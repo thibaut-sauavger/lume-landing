@@ -305,10 +305,27 @@
     border-right: 1px dashed rgba(177,78,31,.25);
   }
   .pola .photo {
-    height: 150px;
+    height: 178px;
     border-radius: 3px;
     position: relative;
     overflow: hidden;
+    background: #EADFCB;
+  }
+  .pola .photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    /* unification : grain chaud + lumière dorée par-dessus chaque cliché */
+    filter: saturate(1.04) contrast(1.02) brightness(1.01) sepia(0.08);
+  }
+  .pola .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 30%, rgba(255, 214, 150, 0.16) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,230,190,0.05) 0%, rgba(70,40,25,0.12) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
   .pola .legende {
     margin-top: 10px;
@@ -323,68 +340,7 @@
   .pola:nth-child(2) { transform: rotate(1.8deg) translateY(10px); }
   .pola:nth-child(3) { transform: rotate(-1.4deg); }
   .pola:nth-child(4) { transform: rotate(2.6deg) translateY(6px); }
-
-  /* Scènes parisiennes en CSS */
-  .ph-seine {
-    background:
-      radial-gradient(circle 26px at 70% 34%, #FFE3AE 0%, #FFC882 58%, transparent 60%),
-      linear-gradient(#FFD9B0 0%, #F6A982 52%, #C96A4C 53%, #8E4634 100%);
-  }
-  .ph-seine::after {
-    content: "";
-    position: absolute;
-    left: 62%; top: 53%; bottom: 0;
-    width: 16%;
-    background: linear-gradient(rgba(255, 220, 160, .8), rgba(255, 220, 160, 0));
-    filter: blur(3px);
-  }
-  .ph-cafe {
-    background:
-      repeating-linear-gradient(90deg, #E2703A 0 18px, #FFF6E8 18px 36px),
-      #F4E5CE;
-    background-size: 100% 34px, 100% 100%;
-    background-repeat: no-repeat;
-  }
-  .ph-cafe::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 34px;
-    background: linear-gradient(#7A4A30, #5C3722);
-    border-top: 3px solid #8E5A3C;
-  }
-  .ph-cafe::before {
-    content: "";
-    position: absolute;
-    left: 30%; bottom: 32px;
-    width: 26px; height: 17px;
-    border-radius: 2px 2px 13px 13px;
-    background: #FFFDF8;
-    box-shadow: 0 3px 0 -1px #C9A07C, 46px 0 0 #FFFDF8, 46px 3px 0 -1px #C9A07C;
-    z-index: 1;
-  }
-  .ph-jardin {
-    background:
-      radial-gradient(circle 30px at 26% 30%, #FFE9BC 0%, #FFD089 60%, transparent 62%),
-      radial-gradient(ellipse 90px 46px at 80% 96%, #9DA86B 0%, transparent 70%),
-      radial-gradient(ellipse 110px 56px at 12% 100%, #B1B97A 0%, transparent 72%),
-      linear-gradient(#FFE3BC 0%, #F8C28F 60%, #D9C089 100%);
-  }
-  .ph-toits {
-    background:
-      radial-gradient(circle 3px at 24% 38%, #FFE9B8 98%, transparent),
-      radial-gradient(circle 3px at 58% 30%, #FFE9B8 98%, transparent),
-      radial-gradient(circle 2.5px at 78% 44%, #FFE9B8 98%, transparent),
-      linear-gradient(168deg, #5C3A4E 0%, #8E4A47 46%, #D97B52 78%, #FFC98C 100%);
-  }
-  .ph-toits::after {
-    content: "";
-    position: absolute;
-    left: -6%; right: -6%; bottom: -4px;
-    height: 46px;
-    background: #41281D;
-    clip-path: polygon(0 70%, 8% 42%, 16% 66%, 25% 30%, 33% 62%, 44% 38%, 52% 70%, 62% 34%, 71% 60%, 80% 26%, 90% 58%, 100% 40%, 100% 100%, 0 100%);
-  }
+  @media (min-width: 880px) { .pola { width: 218px; } }
 
   /* ============ Conversation WhatsApp ============ */
   .phone-scene { position: relative; }
@@ -726,20 +682,20 @@
     <p class="sec-label">Là où ça se passe</p>
     <div class="pola-strip" data-reveal>
       <div class="pola">
-        <div class="photo ph-cafe" role="img" aria-label="Illustration : café parisien sous une devanture rayée"></div>
-        <p class="legende">premier café, le Marais</p>
+        <div class="photo"><img src="assets/c1_kiss_sunset.jpg" alt="Un couple en ombre chinoise au coucher du soleil devant la tour Eiffel" width="900" height="600"></div>
+        <p class="legende">le premier regard</p>
       </div>
       <div class="pola">
-        <div class="photo ph-seine" role="img" aria-label="Illustration : coucher de soleil sur la Seine"></div>
-        <p class="legende">quai de Seine, 19h04</p>
+        <div class="photo"><img src="assets/p1_terrace_coffee.jpg" alt="Terrasse d'un café parisien à l'heure dorée, store rouge et guirlandes" width="900" height="600"></div>
+        <p class="legende">une terrasse, le soir</p>
       </div>
       <div class="pola">
-        <div class="photo ph-jardin" role="img" aria-label="Illustration : lumière dorée dans un jardin"></div>
-        <p class="legende">un banc aux Buttes-Chaumont</p>
-      </div>
-      <div class="pola">
-        <div class="photo ph-toits" role="img" aria-label="Illustration : toits de Paris au crépuscule"></div>
+        <div class="photo"><img src="assets/t2_wineglass_hand.jpg" alt="Deux mains qui trinquent avec des verres de vin rouge dans un bar tamisé" width="900" height="600"></div>
         <p class="legende">le dernier verre a duré</p>
+      </div>
+      <div class="pola">
+        <div class="photo"><img src="assets/c2_bench_water.jpg" alt="Un couple assis sur un banc au bord de la Seine la nuit, sous un réverbère" width="900" height="600"></div>
+        <p class="legende">quai de Seine, 22h</p>
       </div>
     </div>
   </section>
