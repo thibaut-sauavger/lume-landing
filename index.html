@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lume — Louise, ta matchmaker sur WhatsApp</title>
+<meta name="description" content="Pas d'app. Pas de profil. Pas de swipe. Louise est une matchmaker sur WhatsApp : elle apprend qui tu es et te présente une seule personne à la fois, avec son pourquoi. Beta sur invitation à Paris.">
+<meta property="og:title" content="Lume — Louise, ta matchmaker sur WhatsApp">
+<meta property="og:description" content="Pas d'app. Pas de profil. Pas de swipe. Une matchmaker qui te connaît vraiment — sur WhatsApp. Beta sur invitation, Paris.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#130F0A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%2313100A'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23E89B4B'/%3E%3C/svg%3E">
+
+<!-- Fonts : Instrument Serif (display) + Instrument Sans (texte) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --noir:      #13100A;   /* nuit parisienne, chaude */
+    --noir-2:    #1B1610;   /* surfaces */
+    --noir-3:    #221C13;
+    --ligne:     rgba(242, 233, 218, 0.12);
+    --creme:     #F2E9DA;
+    --muted:     #BFB09A;
+    --ambre:     #E89B4B;   /* la lumière */
+    --ambre-vif: #F4B266;
+    --wa:        #25D366;
+    --wa-ink:    #07271A;
+    /* WhatsApp dark mode authentique */
+    --chat-bg:   #0B141A;
+    --chat-bar:  #1F2C34;
+    --bulle-in:  #202C33;
+    --bulle-out: #005C4B;
+    --chat-txt:  #E9EDEF;
+    --chat-meta: #8696A0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--creme);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--ambre); color: var(--noir); }
+
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+
+  /* Grain — toute la page respire */
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+  /* ============ Header ============ */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 26px;
+    position: relative; z-index: 2;
+  }
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    color: var(--creme);
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .logo .flamme {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--ambre-vif);
+    box-shadow: 0 0 14px 3px rgba(232, 155, 75, 0.65);
+    animation: respire 3.2s ease-in-out infinite;
+  }
+  @keyframes respire {
+    0%, 100% { box-shadow: 0 0 10px 2px rgba(232,155,75,.5); }
+    50%      { box-shadow: 0 0 18px 5px rgba(232,155,75,.8); }
+  }
+  .header-tag {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ============ Hero ============ */
+  .hero { position: relative; padding: 72px 0 30px; }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-58%);
+    width: 1100px; height: 850px;
+    background: radial-gradient(ellipse at center,
+      rgba(232, 155, 75, 0.16) 0%,
+      rgba(232, 155, 75, 0.05) 42%,
+      transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-grid { position: relative; z-index: 1; }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(46px, 12.5vw, 92px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+  .hero h1 span { display: block; }
+  .hero h1 .l1 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .05s; }
+  .hero h1 .l2 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .17s; }
+  .hero h1 .l3 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .29s; }
+  .hero h1 .l4 {
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .45s;
+    font-style: italic;
+    color: var(--ambre-vif);
+    text-shadow: 0 0 38px rgba(232, 155, 75, 0.4);
+  }
+  @keyframes monte {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero .sub {
+    margin-top: 26px;
+    font-size: 17.5px;
+    color: var(--muted);
+    max-width: 50ch;
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .6s;
+  }
+  .hero .sub strong { color: var(--creme); font-weight: 600; }
+  .hero .sub em { color: var(--ambre-vif); font-style: italic; }
+
+  .hero-note {
+    margin-top: 18px;
+    font-size: 13.5px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .7s;
+  }
+  .hero-note .tiret { width: 26px; height: 1px; background: var(--ambre); opacity: .7; }
+
+  /* ============ Carte CTA ============ */
+  .cta-card {
+    margin-top: 40px;
+    position: relative;
+    background: linear-gradient(170deg, var(--noir-3) 0%, var(--noir-2) 55%);
+    border: 1px solid var(--ligne);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .78s;
+  }
+  .cta-card::before {
+    content: "";
+    position: absolute; inset: -1px;
+    border-radius: 21px;
+    padding: 1px;
+    background: linear-gradient(160deg, rgba(232,155,75,.55), transparent 38%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .cta-card h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 27px;
+    letter-spacing: -0.01em;
+  }
+  .cta-card .hint { font-size: 14px; color: var(--muted); margin-top: 5px; }
+
+  .qr-zone { margin-top: 20px; display: none; }
+  .qr-tile {
+    display: inline-block;
+    background: var(--creme);
+    padding: 14px;
+    border-radius: 14px;
+    line-height: 0;
+    box-shadow: 0 24px 60px -28px rgba(232, 155, 75, 0.45);
+  }
+  .qr-tile img, .qr-tile canvas { border-radius: 4px; }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 360px;
+    background: var(--wa);
+    color: var(--wa-ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 16px 26px;
+    border-radius: 999px;
+    box-shadow: 0 14px 36px -14px rgba(37, 211, 102, 0.5);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 20px 44px -14px rgba(37, 211, 102, 0.6); }
+  .btn-wa:active { transform: scale(.985); }
+  .btn-wa svg { flex: none; }
+  .cta-card .micro { margin-top: 13px; font-size: 13px; color: var(--muted); }
+
+  /* ============ Labels de section ============ */
+  section { margin-top: 96px; position: relative; }
+  .sec-label {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ambre);
+    margin-bottom: 30px;
+  }
+  .sec-label::after { content: ""; flex: 1; height: 1px; background: var(--ligne); }
+
+  /* ============ Stat 78% ============ */
+  .stat-grid { display: flex; flex-direction: column; gap: 8px; }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(110px, 34vw, 240px);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--creme);
+  }
+  .stat-num .pct {
+    font-style: italic;
+    font-size: 0.45em;
+    color: var(--ambre-vif);
+    margin-left: 0.04em;
+  }
+  .stat-copy { max-width: 44ch; }
+  .stat-copy p { font-size: 18px; color: var(--muted); }
+  .stat-copy p strong { color: var(--creme); font-weight: 600; }
+  .stat-punch {
+    margin-top: 16px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(25px, 6vw, 38px);
+    line-height: 1.2;
+    color: var(--ambre-vif);
+  }
+  .stat-src { margin-top: 14px; font-size: 12.5px; color: var(--muted); opacity: .8; }
+
+  /* ============ Conversation WhatsApp ============ */
+  .phone-scene { position: relative; }
+  .phone-scene::before {
+    content: "";
+    position: absolute;
+    top: 8%; left: 50%;
+    transform: translateX(-50%);
+    width: 560px; height: 560px;
+    max-width: 130vw;
+    background: radial-gradient(circle, rgba(232,155,75,.11) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .phone {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--chat-bg);
+    border: 1px solid rgba(242,233,218,.14);
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 50px 110px -40px rgba(0,0,0,.85), 0 0 70px -22px rgba(232,155,75,.3);
+  }
+  .chat-bar {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--chat-bar);
+    padding: 13px 16px;
+  }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, var(--ambre-vif), #B05F1D);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 21px;
+    color: var(--noir);
+  }
+  .chat-bar .nom { font-weight: 600; font-size: 15.5px; color: var(--chat-txt); line-height: 1.25; }
+  .chat-bar .statut { font-size: 12.5px; color: var(--chat-meta); }
+  .chat-corps { padding: 18px 12px 16px; display: flex; flex-direction: column; gap: 7px; }
+
+  .jour {
+    align-self: center;
+    font-size: 11.5px;
+    color: var(--chat-meta);
+    background: #182229;
+    padding: 4px 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+  .bulle {
+    max-width: 86%;
+    padding: 8px 10px 6px;
+    border-radius: 10px;
+    font-size: 14.5px;
+    line-height: 1.42;
+    color: var(--chat-txt);
+    box-shadow: 0 1px 1px rgba(0,0,0,.25);
+  }
+  .bulle .meta {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10.5px; color: var(--chat-meta);
+    float: right;
+    margin: 8px -2px 0 10px;
+  }
+  .bulle.in  { background: var(--bulle-in);  align-self: flex-start; border-top-left-radius: 3px; }
+  .bulle.out { background: var(--bulle-out); align-self: flex-end;   border-top-right-radius: 3px; }
+  .bulle.out .meta .check { color: #53BDEB; }
+
+  .typing {
+    background: var(--bulle-in);
+    align-self: flex-start;
+    border-radius: 10px;
+    border-top-left-radius: 3px;
+    padding: 13px 14px;
+    display: inline-flex; gap: 4px;
+  }
+  .typing i {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--chat-meta);
+    animation: tape 1.3s ease-in-out infinite;
+  }
+  .typing i:nth-child(2) { animation-delay: .18s; }
+  .typing i:nth-child(3) { animation-delay: .36s; }
+  @keyframes tape {
+    0%, 60%, 100% { transform: translateY(0); opacity: .45; }
+    30%           { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .phone-caption {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ============ 3 étapes ============ */
+  .etapes { display: flex; flex-direction: column; gap: 0; }
+  .etape {
+    padding: 28px 0;
+    border-top: 1px solid var(--ligne);
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .etape:last-child { border-bottom: 1px solid var(--ligne); }
+  .etape .num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--ambre);
+  }
+  .etape h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .etape p { font-size: 15.5px; color: var(--muted); max-width: 52ch; }
+  .etape p strong { color: var(--creme); font-weight: 600; }
+
+  /* ============ Elle te dira non ============ */
+  .non-sec { text-align: left; }
+  .non-sec h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 9vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    max-width: 16ch;
+  }
+  .non-sec h2 em { font-style: italic; color: var(--ambre-vif); }
+  .non-sec .intro { margin-top: 16px; font-size: 16.5px; color: var(--muted); max-width: 52ch; }
+  .bulle-non {
+    margin-top: 28px;
+    max-width: 480px;
+    background: var(--bulle-in);
+    border: 1px solid rgba(242,233,218,.07);
+    border-radius: 12px;
+    border-top-left-radius: 3px;
+    padding: 14px 16px 11px;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--chat-txt);
+    box-shadow: 0 26px 60px -28px rgba(0,0,0,.8);
+  }
+  .bulle-non .qui { display: block; font-size: 12.5px; font-weight: 600; color: var(--ambre-vif); margin-bottom: 3px; }
+  .bulle-non .meta { float: right; font-size: 10.5px; color: var(--chat-meta); margin: 10px 0 0 10px; }
+  .non-sec .chute {
+    margin-top: 24px;
+    font-size: 15.5px;
+    color: var(--muted);
+    max-width: 52ch;
+  }
+  .non-sec .chute strong { color: var(--creme); font-weight: 600; }
+
+  /* ============ CTA final ============ */
+  .final {
+    margin-top: 100px;
+    position: relative;
+    text-align: center;
+    padding: 76px 22px 84px;
+    border-top: 1px solid var(--ligne);
+    overflow: hidden;
+  }
+  .final::before {
+    content: "";
+    position: absolute;
+    bottom: -340px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 640px;
+    background: radial-gradient(ellipse at center, rgba(232,155,75,.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .final > * { position: relative; }
+  .final h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 10vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+  }
+  .final h2 em { font-style: italic; color: var(--ambre-vif); text-shadow: 0 0 34px rgba(232,155,75,.45); }
+  .final p { margin-top: 14px; color: var(--muted); font-size: 16.5px; max-width: 44ch; margin-left: auto; margin-right: auto; }
+  .final .qr-zone { margin-top: 30px; }
+  .final .micro { margin-top: 14px; font-size: 13px; color: var(--muted); }
+
+  /* ============ Footer ============ */
+  footer {
+    border-top: 1px solid var(--ligne);
+    padding: 34px 0 110px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  footer .wrap { display: flex; flex-direction: column; gap: 9px; }
+  footer strong { color: var(--creme); font-weight: 600; }
+  footer a { color: var(--creme); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(242,233,218,.35); }
+  footer a:hover { text-decoration-color: var(--ambre); }
+
+  /* ============ Barre sticky mobile ============ */
+  .sticky-cta {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(transparent, rgba(19,16,10,.92) 28%);
+    transform: translateY(110%);
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+    pointer-events: none;
+  }
+  .sticky-cta.visible { transform: translateY(0); pointer-events: auto; }
+  .sticky-cta .btn-wa { margin-top: 0; max-width: 480px; display: flex; margin-left: auto; margin-right: auto; box-shadow: 0 10px 30px -8px rgba(0,0,0,.6); }
+
+  /* ============ Reveals au scroll ============ */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  [data-reveal].in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    [data-reveal] { opacity: 1; transform: none; }
+  }
+
+  /* ============ Desktop ============ */
+  @media (min-width: 880px) {
+    body { font-size: 17px; }
+    .wrap { padding: 0 40px; }
+    header { padding-top: 34px; }
+    .hero { padding: 110px 0 40px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .cta-card { margin-top: 0; padding: 36px 32px; }
+    .qr-zone { display: block; }
+    .btn-wa { margin-top: 22px; }
+    section { margin-top: 140px; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 56px;
+      align-items: end;
+    }
+    .stat-copy { padding-bottom: 14px; }
+    .phone { transform: rotate(-1.4deg); }
+    .phone:hover { transform: rotate(0deg); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .etapes { border-top: 1px solid var(--ligne); flex-direction: row; }
+    .etape { border-top: none; flex: 1; display: block; padding: 36px 28px 36px 0; }
+    .etape + .etape { border-left: 1px solid var(--ligne); padding-left: 28px; }
+    .etape:last-child { border-bottom: none; }
+    .etape .num { margin-bottom: 14px; }
+    .etapes-wrap { border-bottom: 1px solid var(--ligne); }
+    .non-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .sticky-cta { display: none; }
+    .final { margin-top: 140px; padding: 110px 22px 120px; }
+    footer { padding-bottom: 48px; }
+    footer .wrap {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="logo">lume <span class="flamme" aria-hidden="true"></span></div>
+  <div class="header-tag">Beta privée · Paris</div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <div class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>
+          <span class="l1">Pas d&rsquo;app.</span>
+          <span class="l2">Pas de profil.</span>
+          <span class="l3">Pas de swipe.</span>
+          <span class="l4">Juste Louise.</span>
+        </h1>
+        <p class="sub">Louise est une <strong>matchmaker sur WhatsApp</strong>. Tu lui parles comme à une meilleure amie, elle apprend qui tu es — et elle ne te présente qu&rsquo;<em>une seule personne</em>, avec son pourquoi, et un date déjà organisé dans un vrai lieu parisien.</p>
+        <p class="hero-note"><span class="tiret" aria-hidden="true"></span>Rien à télécharger. Elle est déjà dans ton téléphone.</p>
+      </div>
+
+      <div class="cta-card" id="cta">
+        <h2>Écris-lui maintenant</h2>
+        <p class="hint">Scanne avec ton téléphone — la conversation s&rsquo;ouvre directement dans WhatsApp.</p>
+        <div class="qr-zone">
+          <div class="qr-tile" id="qr-hero" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
+        </div>
+        <a class="btn-wa js-wa" href="#" rel="noopener">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
+          Ouvrir WhatsApp
+        </a>
+        <p class="micro">Gratuit pendant la beta · Aucune app à installer</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STAT 78% ============ -->
+  <section class="wrap" id="constat">
+    <p class="sec-label">Le constat</p>
+    <div class="stat-grid" data-reveal>
+      <div class="stat-num">78<span class="pct">%</span></div>
+      <div class="stat-copy">
+        <p>des utilisateurs d&rsquo;apps de rencontre se déclarent <strong>épuisés par le swipe</strong>. Des années de matchs qui ne mènent nulle part, de conversations qui meurent, de dates moyens.</p>
+        <p class="stat-punch serif">Ce n&rsquo;est pas toi le problème.<br>C&rsquo;est le catalogue.</p>
+        <p class="stat-src">Source : Forbes Health, 2024.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONVERSATION ============ -->
+  <section class="wrap" id="conversation">
+    <p class="sec-label">Ta première conversation</p>
+    <div class="phone-scene" data-reveal>
+      <div class="phone" role="img" aria-label="Exemple de conversation WhatsApp avec Louise">
+        <div class="chat-bar">
+          <div class="avatar serif">L</div>
+          <div>
+            <div class="nom">Louise</div>
+            <div class="statut">en ligne</div>
+          </div>
+        </div>
+        <div class="chat-corps">
+          <div class="jour">Aujourd&rsquo;hui</div>
+          <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j&rsquo;aimerais vraiment te connaître. On commence simple : c&rsquo;est quoi ton prénom ?<span class="meta">19:02</span></div>
+          <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+          <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi — je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
+          <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+          <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <p class="phone-caption">Pas de formulaire, pas de cases à cocher. Une conversation.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ÉTAPES ============ -->
+  <section class="wrap" id="comment">
+    <p class="sec-label">Comment ça marche</p>
+    <div class="etapes-wrap" data-reveal>
+      <div class="etapes">
+        <div class="etape">
+          <div class="num">01</div>
+          <div>
+            <h3>Tu lui écris</h3>
+            <p>Un message WhatsApp, c&rsquo;est tout. <strong>Rien à installer</strong>, aucun formulaire, aucune photo à mettre en vitrine.</p>
+          </div>
+        </div>
+        <div class="etape">
+          <div class="num">02</div>
+          <div>
+            <h3>Elle te connaît</h3>
+            <p>Quelques vraies conversations, à ton rythme. Tes non-négociables, ce qui te fait rire, ce que tu n&rsquo;oserais jamais mettre dans une bio.</p>
+          </div>
+        </div>
+        <div class="etape">
+          <div class="num">03</div>
+          <div>
+            <h3>Elle te présente <em class="serif">une</em> personne</h3>
+            <p>Une seule, avec son pourquoi. Si c&rsquo;est oui des deux côtés, <strong>le date est déjà organisé</strong> dans un vrai lieu parisien.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ELLE TE DIRA NON ============ -->
+  <section class="wrap non-sec" id="non">
+    <p class="sec-label">Ce qu&rsquo;une app ne te dira jamais</p>
+    <div class="non-grid" data-reveal>
+      <div>
+        <h2>Certaines semaines, Louise te dira <em>non</em>.</h2>
+        <p class="intro">Elle n&rsquo;a pas de quota de matchs à tenir. Quand elle n&rsquo;a trouvé personne à ta hauteur, elle te le dit — mot pour mot :</p>
+      </div>
+      <div>
+        <div class="bulle-non">
+          <span class="qui">Louise</span>
+          Cette semaine je n&rsquo;ai pas trouvé de match qui vaille ton temps, et je préfère te faire attendre que t&rsquo;envoyer vers un date moyen.
+          <span class="meta">21:38</span>
+        </div>
+        <p class="chute">Une app de swipe ne t&rsquo;enverra jamais ce message : son modèle, c&rsquo;est que tu restes scotché. <strong>Le nôtre, c&rsquo;est que tu n&rsquo;aies plus besoin de nous.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <div class="final" id="final">
+    <h2 data-reveal>La lumière est <em>allumée</em>.</h2>
+    <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise — c&rsquo;est elle qui te répond, vraiment.</p>
+    <div class="qr-zone" data-reveal>
+      <div class="qr-tile" id="qr-final" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
+    </div>
+    <a class="btn-wa js-wa" href="#" rel="noopener" data-reveal>
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
+      Écrire à Louise
+    </a>
+    <p class="micro" data-reveal>Gratuit pendant la beta · Réponse en quelques minutes</p>
+  </div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <p><strong>Lume</strong> — beta sur invitation, Paris.</p>
+    <p>Tes données restent privées : écris <strong>SUPPRIME</strong> à Louise pour tout effacer, sans question.</p>
+    <p>Contact : <a href="mailto:thibautsauvager@gmail.com">thibautsauvager@gmail.com</a></p>
+  </div>
+</footer>
+
+<!-- ============ BARRE STICKY MOBILE ============ -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a class="btn-wa js-wa" href="#" rel="noopener" tabindex="-1">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
+    Écrire à Louise sur WhatsApp
+  </a>
+</div>
+
+<!-- Lib QR (seule dépendance externe) — qrcodejs, expose le global QRCode -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  // ===================== CONFIG =====================
+  // (format international SANS le "+", ex: 33612345678)
+  const WHATSAPP_NUMBER = "33759610062"; // le numéro de Louise
+  const PREFILLED_MESSAGE = "Salut Louise !";
+  // ==================================================
+
+  const waLink = "https://wa.me/" + WHATSAPP_NUMBER +
+    "?text=" + encodeURIComponent(PREFILLED_MESSAGE);
+
+  // Tous les boutons WhatsApp
+  document.querySelectorAll(".js-wa").forEach(function (el) { el.href = waLink; });
+
+  // QR codes (générés côté client, fallback : on masque, le bouton suffit)
+  function makeQR(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (typeof QRCode === "undefined") {
+      target.closest(".qr-zone").style.display = "none";
+      return;
+    }
+    try {
+      new QRCode(target, {
+        text: waLink,
+        width: 184,
+        height: 184,
+        colorDark: "#13100A",
+        colorLight: "#F2E9DA",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    } catch (e) {
+      target.closest(".qr-zone").style.display = "none";
+    }
+  }
+  makeQR("qr-hero");
+  makeQR("qr-final");
+
+  // Reveals au scroll
+  (function () {
+    const els = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("in"); });
+      return;
+    }
+    const obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -40px 0px" });
+    els.forEach(function (el) { obs.observe(el); });
+  })();
+
+  // Barre sticky mobile : visible après le hero, masquée sur le CTA final
+  (function () {
+    const bar = document.getElementById("sticky-cta");
+    const hero = document.getElementById("cta");
+    const fin = document.getElementById("final");
+    if (!bar || !hero || !fin || !("IntersectionObserver" in window)) return;
+    let heroVisible = true, finVisible = false;
+    function maj() {
+      const show = !heroVisible && !finVisible;
+      bar.classList.toggle("visible", show);
+      bar.setAttribute("aria-hidden", show ? "false" : "true");
+      bar.querySelector("a").tabIndex = show ? 0 : -1;
+    }
+    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; maj(); }).observe(hero);
+    new IntersectionObserver(function (e) { finVisible = e[0].isIntersecting; maj(); }).observe(fin);
+  })();
+</script>
+</body>
+</html>
