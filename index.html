@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lume — Louise, ta matchmaker sur WhatsApp</title>
-<meta name="description" content="Pas d'app. Pas de profil. Pas de swipe. Louise est une matchmaker sur WhatsApp : elle apprend qui tu es et te présente une seule personne à la fois, avec son pourquoi. Beta sur invitation à Paris.">
-<meta property="og:title" content="Lume — Louise, ta matchmaker sur WhatsApp">
-<meta property="og:description" content="Une matchmaker qui te connaît vraiment, une seule personne à la fois, un vrai date dans Paris. Sur WhatsApp, sans rien installer.">
+<title>Lume · Louise, ta matchmaker sur WhatsApp</title>
+<meta name="description" content="Pas d'app. Pas de profil. Pas de swipe. Louise est une matchmaker sur WhatsApp : elle apprend qui tu es et te présente des gens choisis pour toi, avec leur pourquoi. Beta sur invitation à Paris.">
+<meta property="og:title" content="Lume · Louise, ta matchmaker sur WhatsApp">
+<meta property="og:description" content="Une matchmaker qui te connaît vraiment et t'organise de vrais dates dans Paris. Sur WhatsApp, sans rien installer.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#FBF4E9">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23FBF4E9'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23E2703A'/%3E%3C/svg%3E">
@@ -44,7 +44,8 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--creme);
+    background-color: var(--creme);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.05'/%3E%3C/svg%3E");
     color: var(--encre);
     font-family: 'Karla', system-ui, sans-serif;
     font-size: 16.5px;
@@ -111,9 +112,9 @@
     transform: translateX(-46%);
     width: 1200px; height: 920px;
     background:
-      radial-gradient(ellipse 46% 38% at 38% 42%, rgba(255, 200, 140, 0.55) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 34% at 64% 56%, rgba(246, 168, 130, 0.4) 0%, transparent 70%);
-    filter: blur(6px);
+      radial-gradient(ellipse 46% 38% at 38% 42%, rgba(255, 200, 140, 0.28) 0%, transparent 72%),
+      radial-gradient(ellipse 40% 34% at 64% 56%, rgba(246, 168, 130, 0.2) 0%, transparent 72%);
+    filter: blur(10px);
     pointer-events: none;
     z-index: 0;
   }
@@ -641,17 +642,17 @@
       <div>
         <p class="hero-eyebrow">Louise · matchmaker sur WhatsApp</p>
         <h1>
-          <span class="l1">L&rsquo;amour ne se</span>
-          <span class="l2">swipe pas.</span>
-          <span class="l3">Il se présente.</span>
+          <span class="l1">Oublie le swipe.</span>
+          <span class="l2">On te présente</span>
+          <span class="l3">quelqu&rsquo;un.</span>
         </h1>
-        <p class="sub">Louise te connaît comme une <strong>meilleure amie</strong>. Elle te présente <em>une seule personne</em> — avec la vraie raison du match — et organise le date dans un joli lieu parisien.</p>
+        <p class="sub">Louise te connaît comme une <strong>meilleure amie</strong>, te présente des gens vraiment choisis pour toi (avec la raison du match), et organise le date dans un joli lieu parisien.</p>
         <p class="hero-note"><span class="coeur" aria-hidden="true">&#10022;</span>Rien à télécharger. Elle est déjà dans ton WhatsApp.</p>
       </div>
 
       <div class="cta-card" id="cta">
         <h2>Écris-lui maintenant</h2>
-        <p class="hint">Scanne avec ton téléphone — la conversation s&rsquo;ouvre directement dans WhatsApp.</p>
+        <p class="hint">Scanne avec ton téléphone, la conversation s&rsquo;ouvre directement dans WhatsApp.</p>
         <div class="qr-zone">
           <div class="qr-tile" id="qr-hero" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
         </div>
@@ -716,7 +717,7 @@
           <div class="jour">Aujourd&rsquo;hui</div>
           <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j&rsquo;aimerais vraiment te connaître. On commence simple : c&rsquo;est quoi ton prénom ?<span class="meta">19:02</span></div>
           <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
-          <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi — je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
+          <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi. Je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
           <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
           <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
         </div>
@@ -741,8 +742,8 @@
       </div>
       <div class="etape">
         <div class="num">3</div>
-        <h3>Elle présente <em>une</em> personne</h3>
-        <p>Une seule, avec son pourquoi. Si c&rsquo;est oui des deux côtés, <strong>le date est déjà organisé</strong> dans un vrai lieu parisien.</p>
+        <h3>Elle te présente <em>quelqu&rsquo;un</em></h3>
+        <p>Avec son pourquoi, jamais au hasard. Si c&rsquo;est oui des deux côtés, <strong>le date est déjà organisé</strong> dans un vrai lieu parisien.</p>
       </div>
     </div>
   </section>
@@ -753,7 +754,7 @@
     <div class="non-grid" data-reveal>
       <div>
         <h2>Parfois, Louise dit <em>non</em>.</h2>
-        <p class="intro">Elle n&rsquo;a pas de quota de matchs à tenir. Quand elle n&rsquo;a trouvé personne à ta hauteur, elle te le dit — mot pour mot :</p>
+        <p class="intro">Elle n&rsquo;a pas de quota de matchs à tenir. Quand elle n&rsquo;a trouvé personne à ta hauteur, elle te le dit, mot pour mot :</p>
       </div>
       <div>
         <div class="bulle-non">
@@ -769,7 +770,7 @@
   <!-- ============ CTA FINAL ============ -->
   <div class="final" id="final">
     <h2 data-reveal>Et si c&rsquo;était <em>la bonne</em> ?</h2>
-    <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise — <strong>c&rsquo;est elle qui te répond</strong>, vraiment.</p>
+    <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise, <strong>c&rsquo;est elle qui te répond</strong>, vraiment.</p>
     <div class="qr-zone" data-reveal>
       <div class="qr-tile" id="qr-final" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
     </div>
@@ -785,7 +786,7 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <p><strong>Lume</strong> — beta sur invitation, Paris.</p>
+    <p><strong>Lume</strong> · beta sur invitation, Paris.</p>
     <p>Tes données restent privées : écris <strong>SUPPRIME</strong> à Louise pour tout effacer. <a href="confidentialite.md">Confidentialité</a></p>
     <p>Contact : <a href="mailto:thibautsauvager@gmail.com">thibautsauvager@gmail.com</a></p>
   </div>
