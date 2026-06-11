@@ -165,8 +165,24 @@
     margin: 18px auto 0; font-size: 16.5px; color: var(--encre-2);
     max-width: 36em; line-height: 1.6;
   }
-  .hero-actions { margin-top: 34px; display: flex; justify-content: center; }
+  .hero-actions { margin-top: 34px; display: flex; justify-content: center; align-items: center; gap: 30px; }
   .hero-micro { margin-top: 15px; font-size: 13.5px; color: var(--encre-3); }
+  .qr-hero-zone { display: none; }
+  @media (min-width: 880px) { .qr-hero-zone { display: block; } }
+  .qr-tile.qr-hero { transform: rotate(-2.5deg); box-shadow: 0 16px 36px -18px rgba(40,30,18,.45); }
+  .qr-tile.qr-hero .qr-hint { font-size: 17px; }
+
+  /* trait de feutre jaune qui barre le mot ennemi */
+  .strike-y { position: relative; display: inline-block; }
+  .strike-y::after {
+    content: ""; position: absolute;
+    left: -2.5%; right: -2.5%; top: 49%;
+    height: 0.085em; border-radius: 0.06em;
+    background: var(--jaune);
+    transform: rotate(-2.6deg);
+    opacity: 0.92;
+    pointer-events: none;
+  }
 
   /* Photos éparpillées (desktop) avec légendes feutre */
   .hero-photos { display: none; }
@@ -211,7 +227,7 @@
   }
   .h-sec em { font-style: italic; font-weight: 300; }
 
-  /* ===== MANIFESTE (feuille manuscrite) ===== */
+  /* ===== LA LETTRE DE LOUISE (feuille manuscrite) ===== */
   .manif-head { max-width: 700px; }
   .sheet-zone { position: relative; max-width: 720px; margin: 64px auto 0; }
   .sheet {
@@ -221,18 +237,18 @@
     box-shadow: 0 30px 70px -30px rgba(40, 30, 18, 0.5), 0 4px 14px rgba(40,30,18,.08);
     border-radius: 2px;
   }
-  .sheet .ligne-m { display: block; margin: 0 0 13px; line-height: 1.5; }
-  .sheet .print {
-    font-family: 'Crimson Pro', serif; font-weight: 400;
-    font-size: 17.5px; color: #4A4036; margin-right: 7px;
+  .lettre p {
+    font-family: 'Caveat', cursive; font-weight: 500;
+    font-size: 23px; line-height: 1.42; color: #211A12;
+    margin: 0 0 16px; max-width: 30em;
   }
-  .sheet .ecrit {
-    font-family: 'Caveat', cursive; font-weight: 600;
-    font-size: 21.5px; color: #211A12;
-    border-bottom: 1.5px solid rgba(33, 26, 18, 0.5);
-    padding: 0 2px 1px;
+  .lettre .salut { font-size: 30px; font-weight: 700; margin-bottom: 20px; transform: rotate(-0.6deg); display: inline-block; }
+  .lettre .souligne { box-shadow: inset 0 -0.32em 0 rgba(242, 203, 92, 0.75); padding: 0 2px; }
+  .lettre .sig-louise {
+    font-family: 'Damion', cursive; font-size: 38px; color: #211A12;
+    display: inline-block; transform: rotate(-3deg); margin-top: 8px;
   }
-  .sheet .ecrit.j { border-bottom-color: rgba(224, 161, 0, 0.75); }
+  .lettre .sig-louise .smile { font-family: 'Caveat', cursive; font-size: 26px; color: #C98E00; margin-left: 8px; }
   .sheet .sig {
     position: absolute; left: 42px; bottom: 38px;
     font-family: 'Antonio', sans-serif; font-weight: 600;
@@ -476,14 +492,21 @@
 
     <div class="hero-inner">
       <span class="hero-script">lume</span>
-      <h1 class="affiche"><span class="l1">Arrête de</span><span class="l2">swiper.</span></h1>
-      <p class="sub-edito">Parle à <em class="lou">Louise</em>, ta matchmaker sur WhatsApp.</p>
-      <p class="sub">Elle prend le temps de te connaître, vraiment. Puis elle te présente une personne qui te correspond, et organise votre rencontre dans un vrai lieu parisien.</p>
+      <h1 class="affiche"><span class="l1">Arrête de</span><span class="l2"><span class="strike-y">swiper.</span></span></h1>
+      <p class="sub-edito">Parle à <em class="lou">Louise</em> sur WhatsApp.</p>
+      <p class="sub">Elle prend le temps de te connaître, vraiment. Puis elle te présente une personne qui te correspond, et organise votre rencontre dans un vrai lieu.</p>
       <div class="hero-actions">
         <a class="btn-main js-wa" href="#" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
           Écrire à Louise
         </a>
+        <div class="qr-hero-zone">
+          <div class="qr-tile qr-hero">
+            <span class="scotch"></span>
+            <div class="qr-box" id="qr-hero" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
+            <span class="qr-hint">écris à Louise</span>
+          </div>
+        </div>
       </div>
       <p class="hero-micro">Gratuit pendant la beta · Aucune app à installer</p>
     </div>
@@ -498,18 +521,19 @@
   <section>
     <div class="wrap sec">
       <div class="manif-head">
-        <span class="sec-kicker">le manifeste</span>
-        <h2 class="h-sec" data-reveal>Où sont passées<br>les <em>rencontres</em> ?</h2>
+        <span class="sec-kicker">elle se présente elle-même</span>
+        <h2 class="h-sec" data-reveal>Une lettre<br>de <em>Louise.</em></h2>
       </div>
       <div class="sheet-zone" data-reveal>
         <div class="sheet">
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit">une rencontre était un moment, pas une notification</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit j">les gens étaient des gens, pas des profils</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit">on se découvrait en parlant, pas en scrollant</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit">tomber sur la bonne personne semblait simple</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit j">on prenait le temps, sans le perdre</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit">l'ego était plus petit, l'attention plus grande</span></span>
-          <span class="ligne-m"><span class="print">On aime l'époque où</span> <span class="ecrit">un regard valait mille messages</span></span>
+          <div class="lettre">
+            <p class="salut">Salut, moi c'est Louise.</p>
+            <p>Je ne suis pas une app de plus. Pas de profil à remplir, pas de photos à juger, pas de petits jeux.</p>
+            <p>Toi et moi, on discute sur WhatsApp. Je retiens ce qui compte : ce qui te fait rire, ce que tu cherches, ce que tu ne veux plus revivre.</p>
+            <p>Et quand je croise quelqu'un qui te correspond vraiment, je vous présente. <span class="souligne">Une personne, pas une liste.</span></p>
+            <p>Si c'est oui des deux côtés, je m'occupe de tout : un vrai rendez-vous, dans un vrai lieu.</p>
+            <p><span class="sig-louise">à vite, Louise<span class="smile">☺</span></span></p>
+          </div>
           <span class="sig">LUME · PARIS</span>
         </div>
         <div class="sheet-photos" aria-hidden="true">
@@ -550,7 +574,7 @@
         <div class="step">
           <div class="num">04</div>
           <h3>Vous vous voyez</h3>
-          <p>Un vrai lieu parisien, réservé pour vous. Le reste de la soirée vous appartient.</p>
+          <p>Un vrai lieu, réservé pour vous. Le reste de la soirée vous appartient.</p>
         </div>
       </div>
     </div>
@@ -734,6 +758,7 @@
     } catch (e) { /* silencieux : le bouton reste le chemin principal */ }
   }
   makeQR("qr-final", 132);
+  makeQR("qr-hero", 88);
 
   // Reveals au scroll (progressive enhancement, jamais bloquant).
   (function () {
