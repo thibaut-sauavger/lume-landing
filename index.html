@@ -3,118 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lume · Louise, ta matchmaker sur WhatsApp</title>
-<meta name="description" content="Pas d'app. Pas de profil. Pas de swipe. Louise est une matchmaker sur WhatsApp : elle apprend qui tu es et te présente des gens choisis pour toi, avec leur pourquoi. Beta sur invitation à Paris.">
-<meta property="og:title" content="Lume · Louise, ta matchmaker sur WhatsApp">
-<meta property="og:description" content="Une matchmaker qui te connaît vraiment et t'organise de vrais dates dans Paris. Sur WhatsApp, sans rien installer.">
+<title>Lume · Arrête de swiper. Parle à Louise.</title>
+<meta name="description" content="Arrête de swiper. Parle à Louise, ta matchmaker sur WhatsApp. Elle apprend qui tu es, vraiment, et te présente des gens choisis pour toi. Beta sur invitation à Paris, gratuit.">
+<meta property="og:title" content="Lume · Arrête de swiper. Parle à Louise.">
+<meta property="og:description" content="Louise est une matchmaker sur WhatsApp. Elle te connaît vraiment et t'organise de vrais dates à Paris. Sans app, sans profil, sans swipe.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#FBF4E9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23FBF4E9'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23E2703A'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#1A1410">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%231A1410'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23E8845A'/%3E%3C/svg%3E">
 
-<!-- Fonts : Fraunces (display, chaleureux) + Karla (texte) -->
+<!-- Fonts : Fraunces (display serif) + Karla (corps) + Caveat (accent manuscrit). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    /* Golden hour — Lume = lumière */
-    --creme:    #FBF4E9;   /* fond, lin chaud */
-    --creme-2:  #F5E9D7;   /* surfaces */
-    --blanc:    #FFFDF8;
-    --encre:    #41281D;   /* brun chaud, texte */
-    --doux:     #7A5B49;   /* texte secondaire */
-    --ligne:    rgba(65, 40, 29, 0.14);
-    --corail:   #E2703A;   /* la lumière */
-    --corail-t: #B14E1F;   /* corail lisible (AA) */
-    --rose:     #F6C6A4;
-    --peche:    #FFDDBE;
-    --wa:       #1FAF5E;
-    --wa-fonce: #128C4B;
-    /* WhatsApp clair authentique */
-    --chat-bg:   #EFE7DC;
-    --chat-bar:  #008069;
-    --bulle-in:  #FFFFFF;
-    --bulle-out: #D9FDD3;
-    --chat-txt:  #111B21;
-    --chat-meta: #667781;
+    /* Nuit chaude · Lume = lumiere dans le sombre */
+    --nuit:     #1A1410;   /* fond, brun nuit chaud */
+    --nuit-2:   #221A14;   /* surfaces */
+    --nuit-3:   #2C211A;   /* cartes claires */
+    --creme:    #F3EADD;   /* texte principal, blanc cassé chaud */
+    --doux:     #C7B4A2;   /* texte secondaire */
+    --doux-2:   #9A8472;   /* texte tertiaire / micro */
+    --ligne:    rgba(243, 234, 221, 0.12);
+    --ligne-2:  rgba(243, 234, 221, 0.07);
+    --ambre:    #E8845A;   /* l'accent, terracotta chaud */
+    --ambre-cl: #F2A878;   /* version lisible AA sur sombre */
+    --or:       #E8B873;   /* lumière dorée */
+    --wa:       #25D366;   /* vert WhatsApp, signal de canal */
+    --wa-fonce: #1EBE5A;
+    /* WhatsApp mode sombre authentique */
+    --chat-bg:   #0B141A;
+    --chat-bar:  #202C33;
+    --bulle-in:  #202C33;
+    --bulle-out: #005C4B;
+    --chat-txt:  #E9EDEF;
+    --chat-meta: #8696A0;
+    --chat-meta-out: #A4C8BF;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: var(--creme);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.05'/%3E%3C/svg%3E");
-    color: var(--encre);
+    background-color: var(--nuit);
+    color: var(--creme);
     font-family: 'Karla', system-ui, sans-serif;
     font-size: 16.5px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  ::selection { background: var(--peche); color: var(--encre); }
+  ::selection { background: var(--ambre); color: #1A1410; }
 
   .serif { font-family: 'Fraunces', Georgia, serif; font-weight: 400; }
-  .main-aura { position: relative; }
+  /* Caveat : l'accent manuscrit, l'âme « carnet ». À utiliser avec parcimonie. */
+  .manuscrit {
+    font-family: 'Caveat', 'Fraunces', cursive;
+    font-weight: 600;
+    line-height: 1.1;
+  }
 
-  /* Grain doux, comme du papier */
+  /* Grain chaud subtil, anti-aplat IA */
   body::after {
     content: "";
     position: fixed; inset: 0;
     pointer-events: none;
-    z-index: 50;
-    opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    z-index: 80;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   }
 
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 22px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
   /* ============ Header ============ */
   header {
     display: flex; align-items: center; justify-content: space-between;
     padding-top: 24px;
-    position: relative; z-index: 2;
+    position: relative; z-index: 3;
   }
   .logo {
     font-family: 'Fraunces', serif;
     font-weight: 500;
     font-size: 29px;
-    color: var(--encre);
-    display: flex; align-items: center; gap: 8px;
+    color: var(--creme);
+    display: flex; align-items: center; gap: 9px;
+    letter-spacing: -0.01em;
   }
   .logo .soleil {
     width: 13px; height: 13px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #FFC98C, var(--corail));
-    box-shadow: 0 0 16px 4px rgba(226, 112, 58, 0.45);
+    background: radial-gradient(circle at 35% 30%, #FFE0AE, var(--ambre));
+    box-shadow: 0 0 16px 4px rgba(232, 132, 90, 0.55);
     animation: respire 3.4s ease-in-out infinite;
   }
   @keyframes respire {
-    0%, 100% { box-shadow: 0 0 12px 3px rgba(226,112,58,.35); }
-    50%      { box-shadow: 0 0 20px 6px rgba(226,112,58,.6); }
+    0%, 100% { box-shadow: 0 0 12px 3px rgba(232,132,90,.4); }
+    50%      { box-shadow: 0 0 22px 7px rgba(232,132,90,.7); }
   }
   .header-tag {
-    font-size: 11.5px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--corail-t);
-    border: 1px solid rgba(177, 78, 31, 0.35);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ambre-cl);
+    border: 1px solid rgba(242, 168, 120, 0.32);
     border-radius: 999px;
     padding: 6px 13px;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(232, 132, 90, 0.06);
   }
 
   /* ============ Hero ============ */
-  .hero { position: relative; padding: 64px 22px 26px; }
+  .hero { position: relative; padding: 60px 22px 24px; }
   .hero::before {
     content: "";
     position: absolute;
-    top: -340px; left: 50%;
-    transform: translateX(-46%);
-    width: 1200px; height: 920px;
+    top: -300px; left: 50%;
+    transform: translateX(-44%);
+    width: 1240px; height: 980px;
     background:
-      radial-gradient(ellipse 46% 38% at 38% 42%, rgba(255, 200, 140, 0.28) 0%, transparent 72%),
-      radial-gradient(ellipse 40% 34% at 64% 56%, rgba(246, 168, 130, 0.2) 0%, transparent 72%);
-    filter: blur(10px);
+      radial-gradient(ellipse 44% 36% at 36% 40%, rgba(232, 160, 96, 0.30) 0%, transparent 70%),
+      radial-gradient(ellipse 38% 32% at 66% 58%, rgba(232, 120, 80, 0.22) 0%, transparent 72%);
+    filter: blur(14px);
     pointer-events: none;
     z-index: 0;
   }
@@ -122,29 +129,29 @@
 
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 9px;
-    font-size: 13px; font-weight: 700;
+    font-size: 12.5px; font-weight: 700;
     letter-spacing: 0.13em; text-transform: uppercase;
-    color: var(--corail-t);
-    margin-bottom: 18px;
+    color: var(--ambre-cl);
+    margin-bottom: 20px;
     animation: monte .8s cubic-bezier(.2,.7,.2,1) both .02s;
   }
-  .hero-eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--corail); }
+  .hero-eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--ambre); }
 
   .hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(44px, 11.5vw, 84px);
-    line-height: 1.03;
-    letter-spacing: -0.02em;
+    font-size: clamp(46px, 12vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.022em;
+    color: var(--creme);
   }
   .hero h1 span { display: block; }
-  .hero h1 .l1 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .08s; }
-  .hero h1 .l2 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .2s; }
-  .hero h1 .l3 {
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .34s;
+  .hero h1 .l1 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .1s; }
+  .hero h1 .l2 {
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .26s;
     font-style: italic;
     font-weight: 400;
-    color: var(--corail-t);
+    color: var(--ambre-cl);
   }
   @keyframes monte {
     from { opacity: 0; transform: translateY(24px); }
@@ -155,63 +162,146 @@
     margin-top: 24px;
     font-size: 17.5px;
     color: var(--doux);
-    max-width: 47ch;
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .5s;
+    max-width: 46ch;
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .46s;
   }
-  .hero .sub strong { color: var(--encre); font-weight: 700; }
-  .hero .sub em { color: var(--corail-t); font-style: italic; }
+  .hero .sub strong { color: var(--creme); font-weight: 700; }
+  .hero .sub em { color: var(--ambre-cl); font-style: italic; }
 
   .hero-note {
     margin-top: 16px;
     font-size: 14px;
-    color: var(--doux);
+    color: var(--doux-2);
     display: flex; align-items: center; gap: 9px;
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .62s;
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .58s;
   }
-  .hero-note .coeur { color: var(--corail-t); font-style: normal; }
+  .hero-note .coeur { color: var(--ambre-cl); font-style: normal; }
+
+  /* ============ Polaroids du hero (la photo accueille dès l'entrée) ============ */
+  .hero-polas {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    animation: monte .9s cubic-bezier(.2,.7,.2,1) both .7s;
+  }
+  /* Une seule petite photo sur mobile, l'autre cachée pour ne pas surcharger */
+  .hero-polas .pola.secondaire { display: none; }
+
+  /* ============ Polaroid argentique (réutilisé hero + mockup) ============ */
+  .pola {
+    background: #F3EADD;
+    border-radius: 5px;
+    padding: 9px 9px 14px;
+    width: 188px;
+    box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.7);
+    position: relative;
+  }
+  .pola .scotch {
+    position: absolute;
+    top: -13px; left: 50%;
+    width: 76px; height: 24px;
+    transform: translateX(-50%) rotate(-2.5deg);
+    background: rgba(232, 200, 150, 0.30);
+    border: 1px solid rgba(243, 234, 221, 0.12);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+    backdrop-filter: blur(1px);
+    pointer-events: none;
+  }
+  .pola::after {
+    content: "";
+    position: absolute; inset: -1px;
+    border-radius: 5px;
+    box-shadow: 0 0 26px 2px rgba(232, 160, 96, 0.18);
+    pointer-events: none;
+  }
+  .pola .photo {
+    height: 150px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    background: #16110D;
+  }
+  .pola .photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    /* unification : grain chaud cohérent sur fond sombre */
+    filter: saturate(1.05) contrast(1.03) brightness(1.0) sepia(0.07);
+  }
+  .pola .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 28%, rgba(255, 210, 150, 0.12) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,225,180,0.04) 0%, rgba(20,12,8,0.16) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .pola .legende {
+    margin-top: 6px;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-weight: 400;
+    font-size: 21px;
+    color: #5A3B2A;
+    line-height: 1.05;
+  }
+  .hero-polas .pola:nth-child(1) { transform: rotate(-3deg); }
+  .hero-polas .pola:nth-child(2) { transform: rotate(2.4deg) translateY(12px); }
 
   /* ============ Carte CTA ============ */
   .cta-card {
     margin-top: 38px;
     position: relative;
-    background: var(--blanc);
+    background: var(--nuit-3);
     border: 1px solid var(--ligne);
     border-radius: 26px;
     padding: 30px 24px;
     text-align: center;
-    box-shadow: 0 30px 70px -34px rgba(120, 62, 30, 0.4);
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .72s;
+    box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,.04);
+    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .66s;
   }
   .cta-card::before {
     content: "";
     position: absolute;
     top: -16px; right: -14px;
-    width: 64px; height: 64px;
+    width: 60px; height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #FFD9A6, var(--corail));
-    opacity: .9;
-    box-shadow: 0 10px 26px -8px rgba(226,112,58,.55);
+    background: radial-gradient(circle at 35% 30%, #FFE0AE, var(--ambre));
+    opacity: .92;
+    box-shadow: 0 12px 30px -8px rgba(232,132,90,.7);
+    pointer-events: none;
+  }
+  .cta-scribble {
+    position: absolute;
+    top: -16px; left: 16px;
+    font-size: 25px;
+    color: var(--or);
+    transform: rotate(-4deg);
+    text-shadow: 0 1px 8px rgba(26,20,16,0.6);
     pointer-events: none;
   }
   .cta-card h2 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: 27px;
+    font-size: 26px;
     letter-spacing: -0.01em;
+    color: var(--creme);
   }
-  .cta-card .hint { font-size: 14px; color: var(--doux); margin-top: 6px; }
+  .cta-card .hint { font-size: 14px; color: var(--doux-2); margin-top: 6px; }
 
   .qr-zone { margin-top: 20px; display: none; }
   .qr-tile {
     display: inline-block;
     background: #fff;
-    padding: 13px;
+    padding: 12px;
     border-radius: 16px;
     line-height: 0;
-    border: 1px solid var(--ligne);
-    box-shadow: 0 18px 44px -22px rgba(120, 62, 30, 0.5);
+    box-shadow: 0 18px 44px -22px rgba(0,0,0,0.7);
   }
-  .qr-tile img, .qr-tile canvas { border-radius: 4px; }
+  .qr-tile img, .qr-tile canvas { border-radius: 4px; display: block; }
 
   .btn-wa {
     display: inline-flex;
@@ -220,20 +310,20 @@
     margin-top: 20px;
     width: 100%;
     max-width: 360px;
-    background: var(--wa-fonce);
-    color: #fff;
+    background: var(--wa);
+    color: #06251A;
     text-decoration: none;
     font-weight: 700;
     font-size: 17px;
     padding: 16px 26px;
     border-radius: 999px;
-    box-shadow: 0 16px 36px -14px rgba(18, 140, 75, 0.55);
+    box-shadow: 0 16px 38px -12px rgba(37, 211, 102, 0.45);
     transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .btn-wa:hover { transform: translateY(-2px); background: #0F7A41; box-shadow: 0 22px 44px -14px rgba(18, 140, 75, 0.65); }
+  .btn-wa:hover { transform: translateY(-2px); background: #2EDC6F; box-shadow: 0 24px 48px -14px rgba(37, 211, 102, 0.55); }
   .btn-wa:active { transform: scale(.985); }
   .btn-wa svg { flex: none; }
-  .cta-card .micro { margin-top: 13px; font-size: 13px; color: var(--doux); }
+  .cta-card .micro { margin-top: 13px; font-size: 13px; color: var(--doux-2); }
 
   /* ============ Labels de section ============ */
   section.wrap { margin-top: 96px; position: relative; }
@@ -241,186 +331,143 @@
     display: flex; align-items: center; gap: 14px;
     font-size: 12px; font-weight: 700;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--corail-t);
+    color: var(--ambre-cl);
     margin-bottom: 28px;
   }
   .sec-label::after { content: ""; flex: 1; height: 1px; background: var(--ligne); }
 
-  /* ============ Stat 78% ============ */
-  .stat-grid { display: flex; flex-direction: column; gap: 10px; }
-  .stat-num {
+  /* ============ Manifeste anti-swipe ============ */
+  .manifeste h2 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(108px, 32vw, 220px);
-    line-height: 0.85;
+    font-size: clamp(32px, 7.5vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    color: var(--creme);
+    max-width: 18ch;
+  }
+  .manifeste h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
+  .manifeste .lede { margin-top: 22px; font-size: 18px; color: var(--doux); max-width: 52ch; }
+  .manifeste .lede strong { color: var(--creme); font-weight: 700; }
+  .manifeste .triple {
+    margin-top: 26px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .manifeste .triple span {
+    font-size: 14px; font-weight: 700;
+    color: var(--creme);
+    border: 1px solid var(--ligne);
+    background: var(--nuit-2);
+    border-radius: 999px;
+    padding: 8px 16px;
+  }
+  .manifeste .stat-line {
+    margin-top: 30px;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .manifeste .stat-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(56px, 14vw, 86px);
+    line-height: 0.9;
     letter-spacing: -0.03em;
-    color: var(--encre);
+    color: var(--creme);
   }
-  .stat-num .pct {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.45em;
-    color: var(--corail-t);
-    margin-left: 0.04em;
-  }
-  .stat-copy { max-width: 46ch; }
-  .stat-copy p { font-size: 18px; color: var(--doux); }
-  .stat-copy p strong { color: var(--encre); font-weight: 700; }
-  .stat-copy p.stat-punch {
-    margin-top: 16px;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(25px, 6vw, 37px);
-    line-height: 1.2;
-    color: var(--corail-t);
-  }
-  .stat-copy p.stat-src { margin-top: 14px; font-size: 12.5px; color: var(--doux); opacity: .85; }
-
-  /* ============ Polaroids ============ */
-  .pola-sec { margin-top: 90px; overflow: hidden; }
-  .pola-strip {
-    display: flex;
-    gap: 22px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 26px 8px 14px;
-  }
-  .pola {
-    background: #FFFDF8;
-    border: 1px solid rgba(65,40,29,.1);
-    border-radius: 6px;
-    padding: 10px 10px 13px;
-    width: 196px;
-    box-shadow: 0 22px 44px -22px rgba(120, 62, 30, 0.45);
-    position: relative;
-  }
-  .pola::before {
-    content: "";
-    position: absolute;
-    top: -11px; left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 64px; height: 20px;
-    background: rgba(246, 198, 164, 0.75);
-    border-left: 1px dashed rgba(177,78,31,.25);
-    border-right: 1px dashed rgba(177,78,31,.25);
-  }
-  .pola .photo {
-    height: 178px;
-    border-radius: 3px;
-    position: relative;
-    overflow: hidden;
-    background: #EADFCB;
-  }
-  .pola .photo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    /* unification : grain chaud + lumière dorée par-dessus chaque cliché */
-    filter: saturate(1.04) contrast(1.02) brightness(1.01) sepia(0.08);
-  }
-  .pola .photo::after {
-    content: "";
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 120% 80% at 50% 30%, rgba(255, 214, 150, 0.16) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(255,230,190,0.05) 0%, rgba(70,40,25,0.12) 100%);
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-  .pola .legende {
-    margin-top: 10px;
-    text-align: center;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 15.5px;
-    color: var(--doux);
-    line-height: 1.3;
-  }
-  .pola:nth-child(1) { transform: rotate(-3.2deg); }
-  .pola:nth-child(2) { transform: rotate(1.8deg) translateY(10px); }
-  .pola:nth-child(3) { transform: rotate(-1.4deg); }
-  .pola:nth-child(4) { transform: rotate(2.6deg) translateY(6px); }
-  @media (min-width: 880px) { .pola { width: 218px; } }
+  .manifeste .stat-num .pct { font-style: italic; font-weight: 400; color: var(--ambre-cl); font-size: 0.5em; }
+  .manifeste .stat-txt { font-size: 15.5px; color: var(--doux); max-width: 32ch; }
+  .manifeste .stat-txt .src { display: block; margin-top: 4px; font-size: 12.5px; color: var(--doux-2); }
 
   /* ============ Conversation WhatsApp ============ */
   .phone-scene { position: relative; }
   .phone-scene::before {
     content: "";
     position: absolute;
-    top: 4%; left: 50%;
+    top: -6%; left: 50%;
     transform: translateX(-50%);
-    width: 580px; height: 580px;
-    max-width: 130vw;
-    background: radial-gradient(circle, rgba(255, 196, 138, .5) 0%, transparent 62%);
-    filter: blur(4px);
+    width: 620px; height: 620px;
+    max-width: 140vw;
+    background: radial-gradient(circle, rgba(232, 160, 96, .28) 0%, transparent 62%);
+    filter: blur(8px);
     pointer-events: none;
+    z-index: 0;
   }
   .phone {
     position: relative;
-    max-width: 400px;
+    z-index: 1;
+    max-width: 392px;
     margin: 0 auto;
     background: var(--chat-bg);
-    border: 1px solid rgba(65,40,29,.16);
-    border-radius: 28px;
+    border: 1px solid rgba(243, 234, 221, .1);
+    border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 50px 100px -42px rgba(90, 45, 20, 0.55);
+    box-shadow: 0 60px 120px -44px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0,0,0,0.3);
   }
   .chat-bar {
     display: flex; align-items: center; gap: 12px;
     background: var(--chat-bar);
-    padding: 13px 16px;
+    padding: 12px 14px;
   }
+  .chat-back { color: #8696A0; flex: none; }
   .avatar {
-    width: 38px; height: 38px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    background: radial-gradient(circle at 32% 28%, #FFD9A6, var(--corail));
+    background: radial-gradient(circle at 32% 28%, #FFE0AE, var(--ambre));
     display: flex; align-items: center; justify-content: center;
     font-family: 'Fraunces', serif;
-    font-size: 20px;
+    font-size: 21px;
     color: #5A2C12;
+    flex: none;
   }
-  .chat-bar .nom { font-weight: 700; font-size: 15.5px; color: #fff; line-height: 1.25; }
-  .chat-bar .statut { font-size: 12.5px; color: rgba(255,255,255,.85); }
-  .chat-corps { padding: 18px 12px 16px; display: flex; flex-direction: column; gap: 7px; }
+  .chat-bar .who { flex: 1; min-width: 0; }
+  .chat-bar .nom { font-weight: 600; font-size: 16px; color: #E9EDEF; line-height: 1.2; }
+  .chat-bar .statut { font-size: 12.5px; color: var(--chat-meta); }
+  .chat-bar .ico { color: #8696A0; }
+
+  .chat-corps {
+    padding: 16px 9px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+    background:
+      linear-gradient(rgba(11,20,26,0.94), rgba(11,20,26,0.94)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3Ccircle cx='80' cy='60' r='1.5'/%3E%3Ccircle cx='50' cy='100' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  }
 
   .jour {
     align-self: center;
     font-size: 11.5px;
-    color: var(--chat-meta);
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0,0,0,.08);
+    color: #C5CDD2;
+    background: #182229;
     padding: 4px 12px;
     border-radius: 8px;
     margin-bottom: 6px;
   }
   .bulle {
-    max-width: 86%;
-    padding: 8px 10px 6px;
-    border-radius: 10px;
-    font-size: 14.5px;
+    max-width: 84%;
+    padding: 7px 9px 5px;
+    border-radius: 8px;
+    font-size: 14.3px;
     line-height: 1.42;
     color: var(--chat-txt);
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,.18);
   }
   .bulle .meta {
     display: inline-flex; align-items: center; gap: 3px;
     font-size: 10.5px; color: var(--chat-meta);
     float: right;
-    margin: 8px -2px 0 10px;
+    margin: 9px -1px -1px 12px;
   }
-  .bulle.in  { background: var(--bulle-in);  align-self: flex-start; border-top-left-radius: 3px; }
-  .bulle.out { background: var(--bulle-out); align-self: flex-end;   border-top-right-radius: 3px; }
+  .bulle.in  { background: var(--bulle-in);  align-self: flex-start; border-top-left-radius: 2px; }
+  .bulle.out { background: var(--bulle-out); align-self: flex-end;   border-top-right-radius: 2px; }
+  .bulle.out .meta { color: var(--chat-meta-out); }
   .bulle.out .meta .check { color: #53BDEB; }
 
   .typing {
     background: var(--bulle-in);
     align-self: flex-start;
-    border-radius: 10px;
-    border-top-left-radius: 3px;
-    padding: 13px 14px;
+    border-radius: 8px;
+    border-top-left-radius: 2px;
+    padding: 12px 14px;
     display: inline-flex; gap: 4px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,.18);
   }
   .typing i {
     width: 6px; height: 6px; border-radius: 50%;
@@ -434,138 +481,169 @@
     30%           { transform: translateY(-4px); opacity: 1; }
   }
 
-  .phone-caption {
+  .phone-side {
+    margin-top: 30px;
     text-align: center;
-    margin-top: 22px;
-    font-size: 14.5px;
-    color: var(--doux);
   }
-  .phone-caption em { font-family: 'Fraunces', serif; font-style: italic; color: var(--corail-t); font-size: 16px; }
+  .phone-side h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 6vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--creme);
+    max-width: 16ch;
+    margin: 0 auto;
+  }
+  .phone-side h3 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
+  .phone-side p { margin-top: 14px; font-size: 16px; color: var(--doux); max-width: 40ch; margin-left: auto; margin-right: auto; }
+
+  /* ============ Polaroid près du mockup (rappel discret) ============ */
+  .pola-mockup {
+    width: 150px;
+    position: absolute;
+    bottom: -52px; left: -34px;
+    z-index: 2;
+    transform: rotate(-5deg);
+    display: none;
+  }
+  .pola-mockup .photo { height: 118px; }
+  .pola-mockup .legende { font-size: 19px; }
+
+  /* ============ Note manuscrite près du mockup ============ */
+  .note-main {
+    font-family: 'Caveat', cursive;
+    font-weight: 400;
+    color: var(--or);
+    line-height: 1.05;
+  }
 
   /* ============ 3 étapes ============ */
   .etapes { display: flex; flex-direction: column; gap: 18px; }
   .etape {
-    background: var(--blanc);
-    border: 1px solid var(--ligne);
+    background: var(--nuit-2);
+    border: 1px solid var(--ligne-2);
     border-radius: 22px;
     padding: 26px 24px;
-    box-shadow: 0 20px 44px -28px rgba(120, 62, 30, 0.35);
+    box-shadow: 0 24px 50px -34px rgba(0, 0, 0, 0.7);
   }
   .etape .num {
     display: inline-flex; align-items: center; justify-content: center;
     width: 42px; height: 42px;
     border-radius: 50%;
-    background: var(--peche);
+    background: rgba(232, 132, 90, 0.14);
+    border: 1px solid rgba(242, 168, 120, 0.3);
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 20px;
-    color: var(--corail-t);
+    color: var(--ambre-cl);
     margin-bottom: 14px;
   }
   .etape h3 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 24px;
     letter-spacing: -0.01em;
     margin-bottom: 7px;
+    color: var(--creme);
   }
-  .etape h3 em { font-style: italic; font-weight: 400; color: var(--corail-t); }
+  .etape h3 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
   .etape p { font-size: 15.5px; color: var(--doux); }
-  .etape p strong { color: var(--encre); font-weight: 700; }
+  .etape p strong { color: var(--creme); font-weight: 700; }
 
-  /* ============ Elle te dira non ============ */
+  /* ============ Parfois Louise dit non ============ */
   .non-sec h2 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
     font-size: clamp(36px, 9vw, 56px);
     line-height: 1.06;
     letter-spacing: -0.018em;
-    max-width: 16ch;
+    max-width: 14ch;
+    color: var(--creme);
   }
-  .non-sec h2 em { font-style: italic; font-weight: 400; color: var(--corail-t); }
-  .non-sec .intro { margin-top: 16px; font-size: 16.5px; color: var(--doux); max-width: 50ch; }
+  .non-sec h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
+  .non-sec .intro { margin-top: 16px; font-size: 16.5px; color: var(--doux); max-width: 48ch; }
   .bulle-non {
     margin-top: 28px;
-    max-width: 480px;
+    max-width: 460px;
     background: var(--bulle-in);
-    border: 1px solid rgba(65,40,29,.1);
-    border-radius: 12px;
+    border-radius: 10px;
     border-top-left-radius: 3px;
-    padding: 14px 16px 11px;
-    font-size: 15.5px;
+    padding: 13px 15px 10px;
+    font-size: 15px;
     line-height: 1.5;
     color: var(--chat-txt);
-    box-shadow: 0 26px 56px -28px rgba(90, 45, 20, 0.45);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
-  .bulle-non .qui { display: block; font-size: 12.5px; font-weight: 700; color: var(--corail-t); margin-bottom: 3px; }
+  .bulle-non .qui { display: block; font-size: 12.5px; font-weight: 700; color: var(--ambre-cl); margin-bottom: 4px; }
   .bulle-non .meta { float: right; font-size: 10.5px; color: var(--chat-meta); margin: 10px 0 0 10px; }
   .non-sec .chute {
     margin-top: 24px;
     font-size: 15.5px;
     color: var(--doux);
-    max-width: 50ch;
+    max-width: 48ch;
   }
-  .non-sec .chute strong { color: var(--encre); font-weight: 700; }
+  .non-sec .chute strong { color: var(--creme); font-weight: 700; }
 
   /* ============ CTA final ============ */
   .final {
     margin-top: 100px;
     position: relative;
     text-align: center;
-    padding: 80px 22px 88px;
+    padding: 84px 22px 90px;
     overflow: hidden;
-    background: linear-gradient(rgba(255, 214, 166, 0) 0%, rgba(255, 206, 150, .45) 55%, rgba(246, 168, 120, .55) 100%);
   }
   .final::before {
     content: "";
     position: absolute;
-    bottom: -150px; left: 50%;
+    bottom: -220px; left: 50%;
     transform: translateX(-50%);
-    width: 460px; height: 460px;
+    width: 720px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 38%, #FFE2B4 0%, #FFB877 55%, rgba(255, 165, 95, 0) 72%);
+    background: radial-gradient(circle at 50% 40%, rgba(232, 184, 115, 0.34) 0%, rgba(232, 132, 90, 0.16) 46%, rgba(232, 132, 90, 0) 70%);
     pointer-events: none;
   }
   .final > * { position: relative; }
   .final h2 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(40px, 10vw, 70px);
-    line-height: 1.05;
+    font-size: clamp(40px, 10vw, 68px);
+    line-height: 1.04;
     letter-spacing: -0.018em;
+    color: var(--creme);
   }
-  .final h2 em { font-style: italic; font-weight: 400; color: var(--corail-t); }
-  .final p { margin-top: 14px; color: var(--doux); font-size: 16.5px; max-width: 44ch; margin-left: auto; margin-right: auto; }
-  .final p strong { color: var(--encre); }
+  .final h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
+  .final p { margin-top: 16px; color: var(--doux); font-size: 16.5px; max-width: 42ch; margin-left: auto; margin-right: auto; }
+  .final p strong { color: var(--creme); }
   .final .qr-zone { margin-top: 30px; }
-  .final .micro { margin-top: 14px; font-size: 13px; color: var(--doux); }
+  .final .micro { margin-top: 14px; font-size: 13px; color: var(--doux-2); }
 
   /* ============ Footer ============ */
   footer {
     border-top: 1px solid var(--ligne);
     padding: 32px 0 112px;
     font-size: 13.5px;
-    color: var(--doux);
-    background: rgba(255, 253, 248, .5);
+    color: var(--doux-2);
+    background: var(--nuit-2);
   }
   footer .wrap { display: flex; flex-direction: column; gap: 9px; }
-  footer strong { color: var(--encre); font-weight: 700; }
-  footer a { color: var(--encre); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(65,40,29,.35); }
-  footer a:hover { text-decoration-color: var(--corail); }
+  footer strong { color: var(--creme); font-weight: 700; }
+  footer a { color: var(--doux); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(243,234,221,.3); }
+  footer a:hover { color: var(--creme); text-decoration-color: var(--ambre); }
 
   /* ============ Barre sticky mobile ============ */
   .sticky-cta {
     position: fixed;
     left: 0; right: 0; bottom: 0;
-    z-index: 60;
+    z-index: 70;
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    background: linear-gradient(rgba(251,244,233,0), rgba(251,244,233,.94) 30%);
+    background: linear-gradient(rgba(26,20,16,0), rgba(26,20,16,.96) 32%);
     transform: translateY(110%);
     transition: transform .35s cubic-bezier(.2,.7,.2,1);
     pointer-events: none;
   }
   .sticky-cta.visible { transform: translateY(0); pointer-events: auto; }
-  .sticky-cta .btn-wa { margin-top: 0; max-width: 480px; display: flex; margin-left: auto; margin-right: auto; box-shadow: 0 10px 28px -8px rgba(40, 24, 12, .35); }
+  .sticky-cta .btn-wa { margin-top: 0; max-width: 480px; display: flex; margin-left: auto; margin-right: auto; box-shadow: 0 10px 30px -8px rgba(0, 0, 0, .55); }
 
   /* ============ Reveals au scroll ============ */
   [data-reveal] {
@@ -585,25 +663,42 @@
     body { font-size: 17px; }
     .wrap { padding: 0 40px; }
     header { padding-top: 32px; }
-    .hero { padding: 96px 40px 40px; }
+    .hero { padding: 92px 40px 40px; }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 64px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
       align-items: center;
     }
     .cta-card { margin-top: 0; padding: 36px 32px; }
     .qr-zone { display: block; }
     .btn-wa { margin-top: 22px; }
-    section.wrap { margin-top: 140px; }
-    .pola-sec { margin-top: 130px; }
-    .stat-grid {
+    section.wrap { margin-top: 150px; }
+    .manifeste-grid {
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 56px;
-      align-items: end;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 70px;
+      align-items: center;
     }
-    .stat-copy { padding-bottom: 14px; }
+    .conv-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .phone-side { text-align: left; margin-top: 0; }
+    .phone-side h3, .phone-side p { margin-left: 0; }
+    /* Hero : deux polaroids scotchés, empilés à côté du bloc texte */
+    .hero-polas {
+      margin-top: 0;
+      justify-content: flex-start;
+      gap: 14px;
+    }
+    .hero-polas .pola { width: 168px; }
+    .hero-polas .pola .photo { height: 132px; }
+    .hero-polas .pola.secondaire { display: block; }
+    /* Le polaroid de rappel apparaît près du mockup sur grand écran */
+    .pola-mockup { display: block; }
     .phone { transform: rotate(-1.4deg); }
     .phone:hover { transform: rotate(0deg); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
     .etapes { flex-direction: row; gap: 22px; }
@@ -615,7 +710,7 @@
       align-items: center;
     }
     .sticky-cta { display: none; }
-    .final { margin-top: 150px; padding: 110px 22px 130px; }
+    .final { margin-top: 160px; padding: 120px 22px 130px; }
     footer { padding-bottom: 44px; }
     footer .wrap {
       flex-direction: row;
@@ -640,89 +735,102 @@
   <div class="hero wrap">
     <div class="hero-grid">
       <div>
-        <p class="hero-eyebrow">Louise · matchmaker sur WhatsApp</p>
+        <p class="hero-eyebrow">Louise · ta matchmaker sur WhatsApp</p>
         <h1>
-          <span class="l1">Oublie le swipe.</span>
-          <span class="l2">On te présente</span>
-          <span class="l3">quelqu&rsquo;un.</span>
+          <span class="l1">Arrête de swiper.</span>
+          <span class="l2">Parle à Louise.</span>
         </h1>
-        <p class="sub">Louise te connaît comme une <strong>meilleure amie</strong>, te présente des gens vraiment choisis pour toi (avec la raison du match), et organise le date dans un joli lieu parisien.</p>
-        <p class="hero-note"><span class="coeur" aria-hidden="true">&#10022;</span>Rien à télécharger. Elle est déjà dans ton WhatsApp.</p>
+        <p class="sub">Louise apprend qui tu es, vraiment, puis te présente <strong>des gens choisis pour toi</strong> et organise le date dans un joli lieu parisien.</p>
+        <p class="hero-note"><span class="coeur" aria-hidden="true">&#10022;</span>Rien à installer. Elle est déjà dans ton WhatsApp.</p>
+
+        <div class="hero-polas" aria-hidden="true">
+          <div class="pola">
+            <span class="scotch"></span>
+            <div class="photo"><img src="assets/c1_kiss_sunset.jpg" alt="" width="900" height="600" loading="lazy"></div>
+            <p class="legende">le premier regard</p>
+          </div>
+          <div class="pola secondaire">
+            <span class="scotch"></span>
+            <div class="photo"><img src="assets/t2_wineglass_hand.jpg" alt="" width="900" height="600" loading="lazy"></div>
+            <p class="legende">le dernier verre a duré</p>
+          </div>
+        </div>
       </div>
 
       <div class="cta-card" id="cta">
+        <span class="cta-scribble manuscrit" aria-hidden="true">pas une appli de plus&#8230;</span>
         <h2>Écris-lui maintenant</h2>
-        <p class="hint">Scanne avec ton téléphone, la conversation s&rsquo;ouvre directement dans WhatsApp.</p>
+        <p class="hint">Scanne avec ton téléphone, la conversation s&rsquo;ouvre dans WhatsApp.</p>
         <div class="qr-zone">
           <div class="qr-tile" id="qr-hero" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
         </div>
         <a class="btn-wa js-wa" href="#" rel="noopener">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
-          Ouvrir WhatsApp
+          Écrire à Louise
         </a>
         <p class="micro">Gratuit pendant la beta · Aucune app à installer</p>
       </div>
     </div>
   </div>
 
-  <!-- ============ STAT 78% ============ -->
-  <section class="wrap" id="constat">
+  <!-- ============ MANIFESTE ANTI-SWIPE ============ -->
+  <section class="wrap manifeste" id="manifeste">
     <p class="sec-label">Le constat</p>
-    <div class="stat-grid" data-reveal>
-      <div class="stat-num">78<span class="pct">%</span></div>
-      <div class="stat-copy">
-        <p>des utilisateurs d&rsquo;apps de rencontre se déclarent <strong>épuisés par le swipe</strong>. Des matchs qui ne mènent nulle part, des conversations qui meurent, des dates moyens.</p>
-        <p class="stat-punch">Ce n&rsquo;est pas toi le problème.<br>C&rsquo;est le catalogue.</p>
-        <p class="stat-src">Source : Forbes Health, 2024.</p>
+    <div class="manifeste-grid" data-reveal>
+      <div>
+        <h2>Le swipe t&rsquo;a épuisé. <em>Ce n&rsquo;est pas toi le problème.</em></h2>
+        <p class="lede">Des heures à faire défiler des visages. Des matchs qui ne mènent nulle part, des conversations qui meurent, des dates moyens par dépit. Tu n&rsquo;es pas difficile, <strong>tu es juste fatigué d&rsquo;un catalogue qui n&rsquo;a jamais pris le temps de te connaître.</strong></p>
+        <div class="triple">
+          <span>Pas d&rsquo;app à télécharger</span>
+          <span>Pas de profil à remplir</span>
+          <span>Pas de swipe</span>
+        </div>
+      </div>
+      <div class="stat-line">
+        <div class="stat-num">78<span class="pct">%</span></div>
+        <div class="stat-txt">
+          des utilisateurs d&rsquo;apps de rencontre se déclarent épuisés par le swipe.
+          <span class="src">Source : Forbes Health, 2024.</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ POLAROIDS ============ -->
-  <section class="wrap pola-sec" id="paris" aria-label="Des rendez-vous dans de vrais lieux parisiens">
-    <p class="sec-label">Là où ça se passe</p>
-    <div class="pola-strip" data-reveal>
-      <div class="pola">
-        <div class="photo"><img src="assets/c1_kiss_sunset.jpg" alt="Un couple en ombre chinoise au coucher du soleil devant la tour Eiffel" width="900" height="600"></div>
-        <p class="legende">le premier regard</p>
-      </div>
-      <div class="pola">
-        <div class="photo"><img src="assets/p1_terrace_coffee.jpg" alt="Terrasse d'un café parisien à l'heure dorée, store rouge et guirlandes" width="900" height="600"></div>
-        <p class="legende">une terrasse, le soir</p>
-      </div>
-      <div class="pola">
-        <div class="photo"><img src="assets/t2_wineglass_hand.jpg" alt="Deux mains qui trinquent avec des verres de vin rouge dans un bar tamisé" width="900" height="600"></div>
-        <p class="legende">le dernier verre a duré</p>
-      </div>
-      <div class="pola">
-        <div class="photo"><img src="assets/c2_bench_water.jpg" alt="Un couple assis sur un banc au bord de la Seine la nuit, sous un réverbère" width="900" height="600"></div>
-        <p class="legende">quai de Seine, 22h</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONVERSATION ============ -->
+  <!-- ============ CONVERSATION WHATSAPP ============ -->
   <section class="wrap" id="conversation">
     <p class="sec-label">Voici Louise</p>
-    <div class="phone-scene" data-reveal>
-      <div class="phone" role="img" aria-label="Exemple de conversation WhatsApp avec Louise">
-        <div class="chat-bar">
-          <div class="avatar serif">L</div>
-          <div>
-            <div class="nom">Louise</div>
-            <div class="statut">en ligne</div>
+    <div class="conv-grid">
+      <div class="phone-side" data-reveal>
+        <h3>Louise apprend qui tu es, <em>vraiment</em>.</h3>
+        <p>Pas de formulaire, pas de cases à cocher. Juste une conversation, à ton rythme, comme avec une amie qui veut bien te présenter quelqu&rsquo;un.</p>
+      </div>
+      <div class="phone-scene" data-reveal>
+        <div class="phone" role="img" aria-label="Exemple de conversation WhatsApp avec Louise">
+          <div class="chat-bar">
+            <svg class="chat-back" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <div class="avatar serif">L</div>
+            <div class="who">
+              <div class="nom">Louise</div>
+              <div class="statut">en ligne</div>
+            </div>
+            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          </div>
+          <div class="chat-corps">
+            <div class="jour">Aujourd&rsquo;hui</div>
+            <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j&rsquo;aimerais vraiment te connaître. On commence simple : c&rsquo;est quoi ton prénom ?<span class="meta">19:02</span></div>
+            <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+            <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi. Je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
+            <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+            <div class="bulle in">J&rsquo;adore. On dirait que tu cherches quelqu&rsquo;un qui sait s&rsquo;attarder. Note prise.<span class="meta">19:08</span></div>
+            <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
           </div>
         </div>
-        <div class="chat-corps">
-          <div class="jour">Aujourd&rsquo;hui</div>
-          <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j&rsquo;aimerais vraiment te connaître. On commence simple : c&rsquo;est quoi ton prénom ?<span class="meta">19:02</span></div>
-          <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
-          <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi. Je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
-          <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="10" viewBox="0 0 16 10" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
-          <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
+        <div class="pola pola-mockup" aria-hidden="true">
+          <span class="scotch"></span>
+          <div class="photo"><img src="assets/c2_bench_water.jpg" alt="" width="900" height="600" loading="lazy"></div>
+          <p class="legende">quai de Seine, 22h</p>
         </div>
       </div>
-      <p class="phone-caption">Pas de formulaire, pas de cases à cocher. <em>Une conversation.</em></p>
     </div>
   </section>
 
@@ -748,7 +856,7 @@
     </div>
   </section>
 
-  <!-- ============ ELLE TE DIRA NON ============ -->
+  <!-- ============ PARFOIS LOUISE DIT NON ============ -->
   <section class="wrap non-sec" id="non">
     <p class="sec-label">Ce qu&rsquo;une app ne te dira jamais</p>
     <div class="non-grid" data-reveal>
@@ -759,7 +867,7 @@
       <div>
         <div class="bulle-non">
           <span class="qui">Louise</span>
-          Cette semaine je n&rsquo;ai pas trouvé de match qui vaille ton temps, et je préfère te faire attendre que t&rsquo;envoyer vers un date moyen.
+          Cette semaine je n&rsquo;ai pas trouvé de match qui vaille ton temps, je préfère te faire attendre que t&rsquo;envoyer vers un date moyen.
           <span class="meta">21:38</span>
         </div>
         <p class="chute">Une app de swipe ne t&rsquo;enverra jamais ce message : son modèle, c&rsquo;est que tu restes scotché. <strong>Le nôtre, c&rsquo;est que tu n&rsquo;aies plus besoin de nous.</strong></p>
@@ -769,7 +877,7 @@
 
   <!-- ============ CTA FINAL ============ -->
   <div class="final" id="final">
-    <h2 data-reveal>Et si c&rsquo;était <em>la bonne</em> ?</h2>
+    <h2 data-reveal>Arrête de swiper.<br><em>Parle à Louise.</em></h2>
     <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise, <strong>c&rsquo;est elle qui te répond</strong>, vraiment.</p>
     <div class="qr-zone" data-reveal>
       <div class="qr-tile" id="qr-final" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
@@ -800,12 +908,12 @@
   </a>
 </div>
 
-<!-- Lib QR (seule dépendance externe) — qrcodejs, expose le global QRCode -->
+<!-- Lib QR (seule dependance externe) · qrcodejs, expose le global QRCode -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
   // ===================== CONFIG =====================
   // (format international SANS le "+", ex: 33612345678)
-  const WHATSAPP_NUMBER = "33759610062"; // le numéro de Louise
+  const WHATSAPP_NUMBER = "33759610062"; // le numero de Louise
   const PREFILLED_MESSAGE = "Salut Louise !";
   // ==================================================
 
@@ -815,7 +923,7 @@
   // Tous les boutons WhatsApp
   document.querySelectorAll(".js-wa").forEach(function (el) { el.href = waLink; });
 
-  // QR codes (générés côté client, fallback : on masque, le bouton suffit)
+  // QR codes (generes cote client, fallback : on masque, le bouton suffit)
   function makeQR(id) {
     const target = document.getElementById(id);
     if (!target) return;
@@ -826,9 +934,9 @@
     try {
       new QRCode(target, {
         text: waLink,
-        width: 184,
-        height: 184,
-        colorDark: "#41281D",
+        width: 176,
+        height: 176,
+        colorDark: "#1A1410",
         colorLight: "#FFFFFF",
         correctLevel: QRCode.CorrectLevel.M
       });
@@ -850,11 +958,11 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.18, rootMargin: "0px 0px -40px 0px" });
+    }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
     els.forEach(function (el) { obs.observe(el); });
   })();
 
-  // Barre sticky mobile : visible après le hero, masquée sur le CTA final
+  // Barre sticky mobile : visible apres le hero, masquee sur le CTA final
   (function () {
     const bar = document.getElementById("sticky-cta");
     const hero = document.getElementById("cta");
