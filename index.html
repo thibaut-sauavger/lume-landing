@@ -12,10 +12,10 @@
 <meta name="theme-color" content="#120D0A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23120D0A'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23F2705B'/%3E%3C/svg%3E">
 
-<!-- Fonts : Anton (display condensé à caractère) + Caveat (script accent) + Jersey 25 (pixel, parcimonie) -->
+<!-- Fonts : Fraunces (serif éditorial vintage haute-contraste, façon Benguiat) pour les titres + Inter pour le corps -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Jersey+25&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -46,16 +46,22 @@
   body {
     background-color: var(--nuit);
     color: var(--creme);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 16.5px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
   ::selection { background: var(--corail); color: #160C0A; }
 
-  .anton { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.005em; }
-  .caveat { font-family: 'Caveat', cursive; font-weight: 700; line-height: 1.05; }
-  .pixel  { font-family: 'Jersey 25', monospace; letter-spacing: 0.02em; }
+  /* Fraunces : serif editorial haute-contraste (opsz max), vibe Benguiat / Stranger Things */
+  .display {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 10px rgba(0,0,0,.8);
+  }
 
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
@@ -91,8 +97,11 @@
     padding: 20px 22px;
   }
   .logo {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 144;
     text-transform: lowercase;
+    letter-spacing: -0.02em;
     font-size: 30px;
     color: var(--creme);
     display: flex; align-items: center; gap: 8px;
@@ -183,51 +192,20 @@
   }
   .hero-eyebrow::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--corail-cl); }
 
-  /* Titre stop-motion : LA signature */
+  /* Titre éditorial vintage (Fraunces haute-contraste) : LA signature */
   .hero h1 {
-    font-family: 'Anton', Impact, sans-serif;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: clamp(50px, 14vw, 112px);
-    line-height: 0.94;
-    letter-spacing: -0.01em;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-size: clamp(48px, 13vw, 108px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
     color: var(--creme);
-    text-shadow: 0 4px 30px rgba(0,0,0,0.55);
+    text-shadow: 0 4px 10px rgba(0,0,0,.8);
   }
   .hero h1 .line { display: block; }
-  .hero h1 .accent { color: var(--corail-cl); }
-
-  /* mot qui tourne */
-  .rotator {
-    display: inline-block;
-    position: relative;
-    color: var(--or);
-  }
-  .rotator .word {
-    display: inline-block;
-    position: absolute; left: 0; top: 0;
-    white-space: nowrap;
-    opacity: 0;
-    animation: rotateword 9s infinite;
-  }
-  .rotator .word:nth-child(1) { animation-delay: 0s; }
-  .rotator .word:nth-child(2) { animation-delay: 3s; }
-  .rotator .word:nth-child(3) { animation-delay: 6s; }
-  .rotator .ghost { visibility: hidden; }
-  @keyframes rotateword {
-    0%       { opacity: 0; transform: translateY(16px); }
-    4%, 30%  { opacity: 1; transform: translateY(0); }
-    36%, 96% { opacity: 0; transform: translateY(-16px); }
-    100%     { opacity: 0; transform: translateY(16px); }
-  }
-
-  .jitter-text { animation: stopmotion 0.4s steps(1) infinite; }
-  @keyframes stopmotion {
-    0%,24.9%  { filter: url(#jitter-0); }
-    25%,49.9% { filter: url(#jitter-1); }
-    50%,74.9% { filter: url(#jitter-2); }
-    75%,99.9% { filter: url(#jitter-3); }
-  }
+  .hero h1 .accent { color: var(--or); }
 
   .hero .sub {
     margin-top: 22px;
@@ -250,7 +228,8 @@
     background: var(--wa);
     color: #06251A;
     text-decoration: none;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     font-size: 17px;
     padding: 16px 28px;
     border-radius: 999px;
@@ -286,21 +265,6 @@
   }
 
   /* ====================================================== */
-  /* 5. Décors pixel-art (parcimonie)                       */
-  /* ====================================================== */
-  .pix { image-rendering: pixelated; image-rendering: crisp-edges; }
-  .hero .pix-heart {
-    position: absolute;
-    z-index: 6;
-    top: 18%; right: 7%;
-    transform: rotate(8deg);
-    opacity: 0.92;
-    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
-    animation: bobbing 4s ease-in-out infinite;
-  }
-  @keyframes bobbing { 0%,100%{transform:rotate(8deg) translateY(0)} 50%{transform:rotate(8deg) translateY(-9px)} }
-
-  /* ====================================================== */
   /* 3. Bord papier déchiré (mask zigzag)                   */
   /* ====================================================== */
   .torn-top {
@@ -325,7 +289,7 @@
     color: var(--corail-cl);
     margin-bottom: 26px;
   }
-  .sec-label .pixstar { font-family: 'Jersey 25', monospace; color: var(--or); font-size: 18px; }
+  .sec-label .pixstar { color: var(--or); font-size: 15px; }
 
   /* ====================================================== */
   /* COMMENT ÇA MARCHE (4 cartes)                           */
@@ -336,12 +300,16 @@
     padding-top: 96px;
   }
   .h-section {
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    font-size: clamp(34px, 8vw, 64px);
-    line-height: 0.95;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-size: clamp(32px, 7vw, 58px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
     color: var(--creme);
-    max-width: 16ch;
+    text-shadow: 0 3px 8px rgba(0,0,0,.5);
+    max-width: 18ch;
   }
   .h-section .accent { color: var(--corail-cl); }
   .steps {
@@ -359,59 +327,26 @@
     overflow: hidden;
   }
   .step .num {
-    font-family: 'Jersey 25', monospace;
-    font-size: 46px;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 144;
+    font-size: 44px;
     line-height: 1;
     color: var(--corail);
-    opacity: 0.92;
+    opacity: 0.95;
+    letter-spacing: -0.02em;
   }
   .step h3 {
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    font-size: 21px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-variation-settings: "opsz" 144;
+    font-size: 22px;
     margin: 10px 0 8px;
     color: var(--creme);
-    letter-spacing: 0.01em;
+    letter-spacing: -0.02em;
   }
   .step p { font-size: 15px; color: var(--doux); }
   .step p strong { color: var(--creme); }
-
-  /* ====================================================== */
-  /* MARQUEE photos argentiques                             */
-  /* ====================================================== */
-  .marquee {
-    overflow: hidden;
-    padding: 30px 0 12px;
-    background: var(--nuit-2);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  }
-  .marquee-track {
-    display: flex; gap: 18px;
-    width: max-content;
-    animation: scroll 34s linear infinite;
-  }
-  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .frame {
-    flex: none;
-    width: 230px;
-    background: #F6EFE6;
-    padding: 9px 9px 12px;
-    border-radius: 4px;
-    box-shadow: 0 20px 40px -22px rgba(0,0,0,0.8);
-  }
-  .frame:nth-child(odd)  { transform: rotate(-2.2deg); }
-  .frame:nth-child(even) { transform: rotate(1.8deg); }
-  .frame .ph {
-    height: 150px; border-radius: 2px; overflow: hidden;
-    background: #16110D; position: relative;
-  }
-  .frame .ph img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.03) sepia(0.06); }
-  .frame .cap {
-    margin-top: 7px; text-align: center;
-    font-family: 'Caveat', cursive; font-weight: 700;
-    font-size: 20px; color: #5A3B2A; line-height: 1;
-  }
 
   /* ====================================================== */
   /* CONVERSATION (voici Louise)                            */
@@ -433,7 +368,7 @@
     width: 40px; height: 40px; border-radius: 50%;
     background: radial-gradient(circle at 32% 28%, #FFD9A0, var(--corail));
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Anton', sans-serif; font-size: 19px; color: #5A2012; flex: none;
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 19px; color: #5A2012; flex: none;
   }
   .chat-bar .who { flex: 1; min-width: 0; }
   .chat-bar .nom { font-weight: 600; font-size: 16px; color: #E9EDEF; line-height: 1.2; }
@@ -482,8 +417,8 @@
   .col.apps { background: var(--nuit-3); }
   .col .tete {
     display: flex; align-items: center; gap: 10px;
-    font-family: 'Anton', sans-serif; text-transform: uppercase;
-    font-size: 22px; margin-bottom: 16px; letter-spacing: 0.01em;
+    font-family: 'Fraunces', serif; font-weight: 700; font-variation-settings: "opsz" 144;
+    font-size: 24px; margin-bottom: 16px; letter-spacing: -0.02em;
   }
   .col.lume .tete { color: var(--corail-cl); }
   .col.apps .tete { color: var(--doux); }
@@ -499,7 +434,7 @@
     background: var(--nuit-3); border: 1px solid var(--ligne);
     border-radius: 16px; padding: 16px 20px;
   }
-  .stat-pill .n { font-family: 'Anton', sans-serif; font-size: 44px; line-height: 0.9; color: var(--corail-cl); }
+  .stat-pill .n { font-family: 'Fraunces', serif; font-weight: 700; font-variation-settings: "opsz" 144; letter-spacing: -0.03em; font-size: 46px; line-height: 0.9; color: var(--corail-cl); }
   .stat-pill .t { font-size: 13.5px; color: var(--doux); max-width: 26ch; }
   .stat-pill .t .src { display: block; color: var(--doux-2); font-size: 12px; margin-top: 2px; }
 
@@ -549,7 +484,7 @@
   details[open] summary .plus { transform: rotate(135deg); }
   details .ans { padding: 0 2px 22px; font-size: 15.5px; color: var(--doux); max-width: 64ch; }
   details .ans strong { color: var(--creme); }
-  details .ans code { font-family: 'Jersey 25', monospace; font-size: 1.15em; color: var(--or); letter-spacing: 0.04em; }
+  details .ans code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-weight: 600; font-size: 0.92em; color: var(--or); letter-spacing: 0.04em; }
 
   /* ====================================================== */
   /* BANDEAU FINAL                                          */
@@ -564,11 +499,15 @@
       var(--nuit);
   }
   .final h2 {
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    font-size: clamp(46px, 13vw, 104px);
-    line-height: 0.9;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-size: clamp(44px, 12vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
     color: var(--creme);
+    text-shadow: 0 4px 10px rgba(0,0,0,.6);
   }
   .final h2 .accent { color: var(--corail-cl); }
   .final p { margin-top: 18px; color: var(--doux); font-size: 16.5px; max-width: 40ch; margin-left: auto; margin-right: auto; }
@@ -593,7 +532,7 @@
   footer strong { color: var(--creme); font-weight: 700; }
   footer a { color: var(--doux); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(246,239,230,.3); }
   footer a:hover { color: var(--creme); text-decoration-color: var(--corail); }
-  footer .pixmark { font-family: 'Jersey 25', monospace; color: var(--corail-cl); font-size: 16px; }
+  footer .pixmark { color: var(--corail-cl); font-size: 14px; }
 
   /* ====================================================== */
   /* Sticky CTA mobile                                      */
@@ -616,10 +555,7 @@
   /* prefers-reduced-motion : on coupe le tremblement et tout le reste */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .jitter-text { filter: none !important; }
     .hero-bg .shot-2 { opacity: 0; }
-    .rotator .word:first-child { opacity: 1 !important; position: static; transform: none; }
-    .rotator .word:not(:first-child) { display: none; }
     [data-reveal] { opacity: 1; transform: none; }
   }
 
@@ -631,7 +567,6 @@
     .wrap { padding: 0 40px; }
     .topbar { padding: 28px 40px; }
     .hero { padding: 0 40px 70px; }
-    .hero .pix-heart { top: 16%; right: 11%; }
     .hero-actions { flex-direction: row; align-items: center; gap: 16px; }
     .sec { padding: 110px 0; }
     .steps { grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -648,28 +583,6 @@
 </style>
 </head>
 <body>
-
-<!-- Filtres SVG du titre stop-motion (les 4 jitter) -->
-<svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <defs>
-    <filter id="jitter-0" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <filter id="jitter-1" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="10" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <filter id="jitter-2" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="17" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <filter id="jitter-3" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="24" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </defs>
-</svg>
 
 <div class="grain" aria-hidden="true"></div>
 
@@ -688,35 +601,11 @@
       <div class="hero-grain"></div>
     </div>
 
-    <!-- pixel heart (parcimonie) -->
-    <svg class="pix pix-heart" width="62" height="56" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
-      <g fill="#FF8C7A">
-        <rect x="2" y="1" width="4" height="1"/><rect x="10" y="1" width="4" height="1"/>
-        <rect x="1" y="2" width="6" height="1"/><rect x="9" y="2" width="6" height="1"/>
-        <rect x="1" y="3" width="14" height="2"/>
-        <rect x="2" y="5" width="12" height="1"/>
-        <rect x="3" y="6" width="10" height="1"/>
-        <rect x="4" y="7" width="8" height="1"/>
-        <rect x="5" y="8" width="6" height="1"/>
-        <rect x="6" y="9" width="4" height="1"/>
-        <rect x="7" y="10" width="2" height="1"/>
-      </g>
-    </svg>
-
     <div class="hero-inner">
       <p class="hero-eyebrow">Louise · ta matchmaker sur WhatsApp</p>
       <h1>
-        <span class="line jitter-text">Arrête</span>
-        <span class="line jitter-text">de swiper.</span>
-        <span class="line jitter-text">Rencontre,</span>
-        <span class="line jitter-text">
-          <span class="rotator" aria-label="autour d'un verre, d'une expo, d'un dimanche">
-            <span class="ghost">d'un dimanche</span>
-            <span class="word">d'un verre</span>
-            <span class="word">d'une expo</span>
-            <span class="word">d'un dimanche</span>
-          </span>
-        </span>
+        <span class="line">Arrête de swiper.</span>
+        <span class="line">Parle à <span class="accent">Louise.</span></span>
       </h1>
       <p class="sub">Louise apprend qui tu es, <strong>vraiment</strong>, puis te présente <em>quelqu'un de choisi pour toi</em> et organise le date dans un vrai lieu parisien.</p>
 
@@ -760,21 +649,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ============ MARQUEE photos ============ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="frame"><div class="ph"><img src="assets/c1_kiss_sunset.jpg" alt="" loading="lazy"></div><p class="cap">le premier regard</p></div>
-      <div class="frame"><div class="ph"><img src="assets/t2_wineglass_hand.jpg" alt="" loading="lazy"></div><p class="cap">santé</p></div>
-      <div class="frame"><div class="ph"><img src="assets/c2_bench_water.jpg" alt="" loading="lazy"></div><p class="cap">quai de Seine, 22h</p></div>
-      <div class="frame"><div class="ph"><img src="assets/p1_terrace_coffee.jpg" alt="" loading="lazy"></div><p class="cap">terrasse, fin d'été</p></div>
-      <!-- duplication pour la boucle -->
-      <div class="frame"><div class="ph"><img src="assets/c1_kiss_sunset.jpg" alt="" loading="lazy"></div><p class="cap">le premier regard</p></div>
-      <div class="frame"><div class="ph"><img src="assets/t2_wineglass_hand.jpg" alt="" loading="lazy"></div><p class="cap">santé</p></div>
-      <div class="frame"><div class="ph"><img src="assets/c2_bench_water.jpg" alt="" loading="lazy"></div><p class="cap">quai de Seine, 22h</p></div>
-      <div class="frame"><div class="ph"><img src="assets/p1_terrace_coffee.jpg" alt="" loading="lazy"></div><p class="cap">terrasse, fin d'été</p></div>
-    </div>
-  </div>
 
   <!-- ============ VOICI LOUISE (conversation) ============ -->
   <section class="louise-band">
