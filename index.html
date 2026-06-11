@@ -3,36 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lume · Arrête de swiper. Parle à Louise.</title>
-<meta name="description" content="Arrête de swiper. Parle à Louise, ta matchmaker sur WhatsApp. Elle apprend qui tu es, vraiment, et te présente des gens choisis pour toi. Beta sur invitation à Paris, gratuit.">
-<meta property="og:title" content="Lume · Arrête de swiper. Parle à Louise.">
-<meta property="og:description" content="Louise est une matchmaker sur WhatsApp. Elle te connaît vraiment et t'organise de vrais dates à Paris. Sans app, sans profil, sans swipe.">
+<title>Lume · Rencontre sans swiper. Parle à Louise.</title>
+<meta name="description" content="Arrête de swiper. Louise est ta matchmaker sur WhatsApp. Elle apprend qui tu es, te présente quelqu'un de choisi, et organise le date dans un vrai lieu parisien. Beta gratuite à Paris.">
+<meta property="og:title" content="Lume · Rencontre sans swiper.">
+<meta property="og:description" content="Louise, ta matchmaker sur WhatsApp. Une rencontre prête, choisie pour toi. Pas de swipe, pas d'app, pas de small talk sans fin. Beta sur invitation à Paris.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1A1410">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%231A1410'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23E8845A'/%3E%3C/svg%3E">
+<meta property="og:image" content="assets/c1_kiss_sunset.jpg">
+<meta name="theme-color" content="#120D0A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23120D0A'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23F2705B'/%3E%3C/svg%3E">
 
-<!-- Fonts : Fraunces (display serif) + Karla (corps) + Caveat (accent manuscrit). -->
+<!-- Fonts : Anton (display condensé à caractère) + Caveat (script accent) + Jersey 25 (pixel, parcimonie) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Jersey+25&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    /* Nuit chaude · Lume = lumiere dans le sombre */
-    --nuit:     #1A1410;   /* fond, brun nuit chaud */
-    --nuit-2:   #221A14;   /* surfaces */
-    --nuit-3:   #2C211A;   /* cartes claires */
-    --creme:    #F3EADD;   /* texte principal, blanc cassé chaud */
-    --doux:     #C7B4A2;   /* texte secondaire */
-    --doux-2:   #9A8472;   /* texte tertiaire / micro */
-    --ligne:    rgba(243, 234, 221, 0.12);
-    --ligne-2:  rgba(243, 234, 221, 0.07);
-    --ambre:    #E8845A;   /* l'accent, terracotta chaud */
-    --ambre-cl: #F2A878;   /* version lisible AA sur sombre */
-    --or:       #E8B873;   /* lumière dorée */
-    --wa:       #25D366;   /* vert WhatsApp, signal de canal */
-    --wa-fonce: #1EBE5A;
-    /* WhatsApp mode sombre authentique */
+    --nuit:    #120D0A;   /* fond brun nuit profond */
+    --nuit-2:  #1B1410;   /* surfaces */
+    --nuit-3:  #241A14;   /* cartes */
+    --creme:   #F6EFE6;   /* texte principal */
+    --doux:    #CBB9A8;   /* texte secondaire */
+    --doux-2:  #9C8470;   /* micro */
+    --ligne:   rgba(246, 239, 230, 0.14);
+    --ligne-2: rgba(246, 239, 230, 0.08);
+    --corail:  #F2705B;   /* accent rose/corail (signature finale) */
+    --corail-cl:#FF8C7A;  /* version lisible AA sur sombre */
+    --or:      #F2C14E;   /* lumière dorée */
+    --wa:      #25D366;
     --chat-bg:   #0B141A;
     --chat-bar:  #202C33;
     --bulle-in:  #202C33;
@@ -43,864 +41,897 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background-color: var(--nuit);
     color: var(--creme);
-    font-family: 'Karla', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 16.5px;
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
-  ::selection { background: var(--ambre); color: #1A1410; }
+  ::selection { background: var(--corail); color: #160C0A; }
 
-  .serif { font-family: 'Fraunces', Georgia, serif; font-weight: 400; }
-  /* Caveat : l'accent manuscrit, l'âme « carnet ». À utiliser avec parcimonie. */
-  .manuscrit {
-    font-family: 'Caveat', 'Fraunces', cursive;
-    font-weight: 600;
-    line-height: 1.1;
-  }
-
-  /* Grain chaud subtil, anti-aplat IA */
-  body::after {
-    content: "";
-    position: fixed; inset: 0;
-    pointer-events: none;
-    z-index: 80;
-    opacity: 0.055;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  }
+  .anton { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.005em; }
+  .caveat { font-family: 'Caveat', cursive; font-weight: 700; line-height: 1.05; }
+  .pixel  { font-family: 'Jersey 25', monospace; letter-spacing: 0.02em; }
 
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
-  /* ============ Header ============ */
-  header {
+  a { color: inherit; }
+
+  /* ====================================================== */
+  /* 1. GRAIN LOURD global (texture argentique, par-dessus) */
+  /* ====================================================== */
+  .grain {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.13;
+    background-size: cover;
+    /* baseFrequency 0.5 sur mobile = grain plus gros */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' seed='9' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0' in='noise' result='g'/%3E%3CfeComponentTransfer in='g'%3E%3CfeFuncR type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncG type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncB type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  @media (min-width: 880px) {
+    /* baseFrequency 2 sur desktop = grain fin */
+    .grain {
+      opacity: 0.1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' seed='9' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0' in='noise' result='g'/%3E%3CfeComponentTransfer in='g'%3E%3CfeFuncR type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncG type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncB type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    }
+  }
+
+  /* ====================================================== */
+  /* Header flottant                                        */
+  /* ====================================================== */
+  .topbar {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 20;
     display: flex; align-items: center; justify-content: space-between;
-    padding-top: 24px;
-    position: relative; z-index: 3;
+    padding: 20px 22px;
   }
   .logo {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 29px;
+    font-family: 'Anton', sans-serif;
+    text-transform: lowercase;
+    font-size: 30px;
     color: var(--creme);
-    display: flex; align-items: center; gap: 9px;
-    letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 8px;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.6);
   }
-  .logo .soleil {
+  .logo .dot {
     width: 13px; height: 13px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #FFE0AE, var(--ambre));
-    box-shadow: 0 0 16px 4px rgba(232, 132, 90, 0.55);
-    animation: respire 3.4s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 30%, #FFD9A0, var(--corail));
+    box-shadow: 0 0 16px 4px rgba(242,112,91,0.6);
+    animation: pulse 3.2s ease-in-out infinite;
   }
-  @keyframes respire {
-    0%, 100% { box-shadow: 0 0 12px 3px rgba(232,132,90,.4); }
-    50%      { box-shadow: 0 0 22px 7px rgba(232,132,90,.7); }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 12px 3px rgba(242,112,91,.4); }
+    50%     { box-shadow: 0 0 22px 7px rgba(242,112,91,.75); }
   }
-  .header-tag {
+  .topbar .tag {
     font-size: 11px; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--ambre-cl);
-    border: 1px solid rgba(242, 168, 120, 0.32);
-    border-radius: 999px;
-    padding: 6px 13px;
-    background: rgba(232, 132, 90, 0.06);
-  }
-
-  /* ============ Hero ============ */
-  .hero { position: relative; padding: 60px 22px 24px; }
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -300px; left: 50%;
-    transform: translateX(-44%);
-    width: 1240px; height: 980px;
-    background:
-      radial-gradient(ellipse 44% 36% at 36% 40%, rgba(232, 160, 96, 0.30) 0%, transparent 70%),
-      radial-gradient(ellipse 38% 32% at 66% 58%, rgba(232, 120, 80, 0.22) 0%, transparent 72%);
-    filter: blur(14px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero-grid { position: relative; z-index: 1; }
-
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-size: 12.5px; font-weight: 700;
-    letter-spacing: 0.13em; text-transform: uppercase;
-    color: var(--ambre-cl);
-    margin-bottom: 20px;
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .02s;
-  }
-  .hero-eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: var(--ambre); }
-
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(46px, 12vw, 88px);
-    line-height: 1.0;
-    letter-spacing: -0.022em;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--creme);
-  }
-  .hero h1 span { display: block; }
-  .hero h1 .l1 { animation: monte .8s cubic-bezier(.2,.7,.2,1) both .1s; }
-  .hero h1 .l2 {
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .26s;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--ambre-cl);
-  }
-  @keyframes monte {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 999px;
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
   }
 
-  .hero .sub {
-    margin-top: 24px;
-    font-size: 17.5px;
-    color: var(--doux);
-    max-width: 46ch;
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .46s;
-  }
-  .hero .sub strong { color: var(--creme); font-weight: 700; }
-  .hero .sub em { color: var(--ambre-cl); font-style: italic; }
-
-  .hero-note {
-    margin-top: 16px;
-    font-size: 14px;
-    color: var(--doux-2);
-    display: flex; align-items: center; gap: 9px;
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .58s;
-  }
-  .hero-note .coeur { color: var(--ambre-cl); font-style: normal; }
-
-  /* ============ Polaroids du hero (la photo accueille dès l'entrée) ============ */
-  .hero-polas {
-    margin-top: 30px;
-    display: flex;
+  /* ====================================================== */
+  /* 2. HERO : photo plein écran + crossfade + overlay      */
+  /* ====================================================== */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
     justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    animation: monte .9s cubic-bezier(.2,.7,.2,1) both .7s;
-  }
-  /* Une seule petite photo sur mobile, l'autre cachée pour ne pas surcharger */
-  .hero-polas .pola.secondaire { display: none; }
-
-  /* ============ Polaroid argentique (réutilisé hero + mockup) ============ */
-  .pola {
-    background: #F3EADD;
-    border-radius: 5px;
-    padding: 9px 9px 14px;
-    width: 188px;
-    box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.7);
-    position: relative;
-  }
-  .pola .scotch {
-    position: absolute;
-    top: -13px; left: 50%;
-    width: 76px; height: 24px;
-    transform: translateX(-50%) rotate(-2.5deg);
-    background: rgba(232, 200, 150, 0.30);
-    border: 1px solid rgba(243, 234, 221, 0.12);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.18);
-    backdrop-filter: blur(1px);
-    pointer-events: none;
-  }
-  .pola::after {
-    content: "";
-    position: absolute; inset: -1px;
-    border-radius: 5px;
-    box-shadow: 0 0 26px 2px rgba(232, 160, 96, 0.18);
-    pointer-events: none;
-  }
-  .pola .photo {
-    height: 150px;
-    border-radius: 2px;
-    position: relative;
     overflow: hidden;
-    background: #16110D;
+    padding: 104px 22px 46px;
   }
-  .pola .photo img {
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img {
+    position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    display: block;
-    /* unification : grain chaud cohérent sur fond sombre */
-    filter: saturate(1.05) contrast(1.03) brightness(1.0) sepia(0.07);
+    object-position: center 38%;
   }
-  .pola .photo::after {
+  /* la 2e image par-dessus la 1re, crossfade */
+  .hero-bg .shot-2 {
+    animation: fadeOut 12s ease-in-out infinite alternate;
+  }
+  @keyframes fadeOut { 0%,40%{opacity:1} 100%{opacity:0} }
+  /* overlay sombre pour la lisibilité AA du texte clair */
+  .hero-bg::after {
     content: "";
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 120% 80% at 50% 28%, rgba(255, 210, 150, 0.12) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(255,225,180,0.04) 0%, rgba(20,12,8,0.16) 100%);
+      linear-gradient(180deg, rgba(18,13,10,0.45) 0%, rgba(18,13,10,0.12) 32%, rgba(18,13,10,0.62) 74%, rgba(18,13,10,0.92) 100%);
+    z-index: 2;
+  }
+  /* grain lourd argentique, uniquement sur la photo du hero (multiply sur image claire) */
+  .hero-grain {
+    position: absolute; inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.55;
     mix-blend-mode: multiply;
-    pointer-events: none;
+    background-size: cover;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cfilter id='hn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' seed='9' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0' in='noise' result='g'/%3E%3CfeComponentTransfer in='g'%3E%3CfeFuncR type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncG type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncB type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23hn)' opacity='0.6'/%3E%3C/svg%3E");
   }
-  .pola .legende {
-    margin-top: 6px;
-    text-align: center;
-    font-family: 'Caveat', cursive;
-    font-weight: 400;
-    font-size: 21px;
-    color: #5A3B2A;
-    line-height: 1.05;
+  @media (min-width: 880px) {
+    .hero-grain {
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cfilter id='hn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' seed='9' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0' in='noise' result='g'/%3E%3CfeComponentTransfer in='g'%3E%3CfeFuncR type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncG type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3CfeFuncB type='gamma' amplitude='2.4' exponent='6' offset='-0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23hn)' opacity='0.6'/%3E%3C/svg%3E");
+    }
   }
-  .hero-polas .pola:nth-child(1) { transform: rotate(-3deg); }
-  .hero-polas .pola:nth-child(2) { transform: rotate(2.4deg) translateY(12px); }
 
-  /* ============ Carte CTA ============ */
-  .cta-card {
-    margin-top: 38px;
-    position: relative;
-    background: var(--nuit-3);
-    border: 1px solid var(--ligne);
-    border-radius: 26px;
-    padding: 30px 24px;
-    text-align: center;
-    box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,.04);
-    animation: monte .8s cubic-bezier(.2,.7,.2,1) both .66s;
+  .hero-inner { position: relative; z-index: 5; max-width: 1080px; margin: 0 auto; width: 100%; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--creme);
+    margin-bottom: 14px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
   }
-  .cta-card::before {
-    content: "";
-    position: absolute;
-    top: -16px; right: -14px;
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #FFE0AE, var(--ambre));
-    opacity: .92;
-    box-shadow: 0 12px 30px -8px rgba(232,132,90,.7);
-    pointer-events: none;
-  }
-  .cta-scribble {
-    position: absolute;
-    top: -16px; left: 16px;
-    font-size: 25px;
-    color: var(--or);
-    transform: rotate(-4deg);
-    text-shadow: 0 1px 8px rgba(26,20,16,0.6);
-    pointer-events: none;
-  }
-  .cta-card h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 26px;
+  .hero-eyebrow::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--corail-cl); }
+
+  /* Titre stop-motion : LA signature */
+  .hero h1 {
+    font-family: 'Anton', Impact, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: clamp(50px, 14vw, 112px);
+    line-height: 0.94;
     letter-spacing: -0.01em;
     color: var(--creme);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.55);
   }
-  .cta-card .hint { font-size: 14px; color: var(--doux-2); margin-top: 6px; }
+  .hero h1 .line { display: block; }
+  .hero h1 .accent { color: var(--corail-cl); }
 
-  .qr-zone { margin-top: 20px; display: none; }
-  .qr-tile {
+  /* mot qui tourne */
+  .rotator {
     display: inline-block;
-    background: #fff;
-    padding: 12px;
-    border-radius: 16px;
-    line-height: 0;
-    box-shadow: 0 18px 44px -22px rgba(0,0,0,0.7);
+    position: relative;
+    color: var(--or);
   }
-  .qr-tile img, .qr-tile canvas { border-radius: 4px; display: block; }
+  .rotator .word {
+    display: inline-block;
+    position: absolute; left: 0; top: 0;
+    white-space: nowrap;
+    opacity: 0;
+    animation: rotateword 9s infinite;
+  }
+  .rotator .word:nth-child(1) { animation-delay: 0s; }
+  .rotator .word:nth-child(2) { animation-delay: 3s; }
+  .rotator .word:nth-child(3) { animation-delay: 6s; }
+  .rotator .ghost { visibility: hidden; }
+  @keyframes rotateword {
+    0%       { opacity: 0; transform: translateY(16px); }
+    4%, 30%  { opacity: 1; transform: translateY(0); }
+    36%, 96% { opacity: 0; transform: translateY(-16px); }
+    100%     { opacity: 0; transform: translateY(16px); }
+  }
 
+  .jitter-text { animation: stopmotion 0.4s steps(1) infinite; }
+  @keyframes stopmotion {
+    0%,24.9%  { filter: url(#jitter-0); }
+    25%,49.9% { filter: url(#jitter-1); }
+    50%,74.9% { filter: url(#jitter-2); }
+    75%,99.9% { filter: url(#jitter-3); }
+  }
+
+  .hero .sub {
+    margin-top: 22px;
+    font-size: 17px;
+    color: var(--creme);
+    max-width: 42ch;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+  }
+  .hero .sub strong { font-weight: 700; }
+  .hero .sub em { font-style: normal; color: var(--corail-cl); font-weight: 600; }
+
+  .hero-actions { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+  /* ====================================================== */
+  /* Boutons                                                */
+  /* ====================================================== */
   .btn-wa {
-    display: inline-flex;
-    align-items: center; justify-content: center;
+    display: inline-flex; align-items: center; justify-content: center;
     gap: 10px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 360px;
     background: var(--wa);
     color: #06251A;
     text-decoration: none;
     font-weight: 700;
     font-size: 17px;
-    padding: 16px 26px;
+    padding: 16px 28px;
     border-radius: 999px;
-    box-shadow: 0 16px 38px -12px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 16px 40px -12px rgba(37, 211, 102, 0.55);
     transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .btn-wa:hover { transform: translateY(-2px); background: #2EDC6F; box-shadow: 0 24px 48px -14px rgba(37, 211, 102, 0.55); }
+  .btn-wa:hover { transform: translateY(-2px); background: #2EDC6F; box-shadow: 0 24px 50px -14px rgba(37, 211, 102, 0.6); }
   .btn-wa:active { transform: scale(.985); }
   .btn-wa svg { flex: none; }
-  .cta-card .micro { margin-top: 13px; font-size: 13px; color: var(--doux-2); }
 
-  /* ============ Labels de section ============ */
-  section.wrap { margin-top: 96px; position: relative; }
+  /* bouton glass secondaire */
+  .btn-glass {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--creme);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 13px 22px;
+    border-radius: 999px;
+    transition: background .15s ease, transform .15s ease;
+  }
+  .btn-glass:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+  .hero-micro {
+    margin-top: 4px;
+    font-size: 13.5px;
+    color: var(--doux);
+    text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+  }
+
+  /* ====================================================== */
+  /* 5. Décors pixel-art (parcimonie)                       */
+  /* ====================================================== */
+  .pix { image-rendering: pixelated; image-rendering: crisp-edges; }
+  .hero .pix-heart {
+    position: absolute;
+    z-index: 6;
+    top: 18%; right: 7%;
+    transform: rotate(8deg);
+    opacity: 0.92;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+    animation: bobbing 4s ease-in-out infinite;
+  }
+  @keyframes bobbing { 0%,100%{transform:rotate(8deg) translateY(0)} 50%{transform:rotate(8deg) translateY(-9px)} }
+
+  /* ====================================================== */
+  /* 3. Bord papier déchiré (mask zigzag)                   */
+  /* ====================================================== */
+  .torn-top {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390.02 800' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cmask id='wavyMask'%3E%3Crect x='0' y='0' width='390.02' height='1000' fill='white'/%3E%3Cpath fill='black' d='M390.02,0H0v14.61c1.28,0,2.57-.48,3.55-1.46L11.64,5.06c1.96-1.96,5.14-1.95,7.09.02l7.9,8c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.9,8c.98.99,2.26,1.48,3.55,1.49V0Z'/%3E%3C/mask%3E%3C/defs%3E%3Crect x='0' y='0' width='390.02' height='1000' fill='white' mask='url(%23wavyMask)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390.02 800' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cmask id='wavyMask'%3E%3Crect x='0' y='0' width='390.02' height='1000' fill='white'/%3E%3Cpath fill='black' d='M390.02,0H0v14.61c1.28,0,2.57-.48,3.55-1.46L11.64,5.06c1.96-1.96,5.14-1.95,7.09.02l7.9,8c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.88,7.98c1.96,1.98,5.16,1.98,7.12,0l7.88-7.98c1.96-1.98,5.16-1.98,7.12,0l7.9,8c.98.99,2.26,1.48,3.55,1.49V0Z'/%3E%3C/mask%3E%3C/defs%3E%3Crect x='0' y='0' width='390.02' height='1000' fill='white' mask='url(%23wavyMask)'/%3E%3C/svg%3E");
+    -webkit-mask-size: 390px 100%;
+    mask-size: 390px 100%;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-position: top left;
+    mask-position: top left;
+  }
+
+  /* ====================================================== */
+  /* Section générique                                      */
+  /* ====================================================== */
+  .sec { position: relative; padding: 80px 0; }
   .sec-label {
-    display: flex; align-items: center; gap: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
     font-size: 12px; font-weight: 700;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ambre-cl);
-    margin-bottom: 28px;
+    color: var(--corail-cl);
+    margin-bottom: 26px;
   }
-  .sec-label::after { content: ""; flex: 1; height: 1px; background: var(--ligne); }
+  .sec-label .pixstar { font-family: 'Jersey 25', monospace; color: var(--or); font-size: 18px; }
 
-  /* ============ Manifeste anti-swipe ============ */
-  .manifeste h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(32px, 7.5vw, 52px);
-    line-height: 1.12;
-    letter-spacing: -0.018em;
-    color: var(--creme);
-    max-width: 18ch;
-  }
-  .manifeste h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
-  .manifeste .lede { margin-top: 22px; font-size: 18px; color: var(--doux); max-width: 52ch; }
-  .manifeste .lede strong { color: var(--creme); font-weight: 700; }
-  .manifeste .triple {
-    margin-top: 26px;
-    display: flex; flex-wrap: wrap; gap: 10px;
-  }
-  .manifeste .triple span {
-    font-size: 14px; font-weight: 700;
-    color: var(--creme);
-    border: 1px solid var(--ligne);
-    background: var(--nuit-2);
-    border-radius: 999px;
-    padding: 8px 16px;
-  }
-  .manifeste .stat-line {
-    margin-top: 30px;
-    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
-  }
-  .manifeste .stat-num {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(56px, 14vw, 86px);
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: var(--creme);
-  }
-  .manifeste .stat-num .pct { font-style: italic; font-weight: 400; color: var(--ambre-cl); font-size: 0.5em; }
-  .manifeste .stat-txt { font-size: 15.5px; color: var(--doux); max-width: 32ch; }
-  .manifeste .stat-txt .src { display: block; margin-top: 4px; font-size: 12.5px; color: var(--doux-2); }
-
-  /* ============ Conversation WhatsApp ============ */
-  .phone-scene { position: relative; }
-  .phone-scene::before {
-    content: "";
-    position: absolute;
-    top: -6%; left: 50%;
-    transform: translateX(-50%);
-    width: 620px; height: 620px;
-    max-width: 140vw;
-    background: radial-gradient(circle, rgba(232, 160, 96, .28) 0%, transparent 62%);
-    filter: blur(8px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .phone {
+  /* ====================================================== */
+  /* COMMENT ÇA MARCHE (4 cartes)                           */
+  /* ====================================================== */
+  .steps-band {
     position: relative;
-    z-index: 1;
-    max-width: 392px;
-    margin: 0 auto;
-    background: var(--chat-bg);
-    border: 1px solid rgba(243, 234, 221, .1);
-    border-radius: 30px;
+    background: var(--nuit-2);
+    padding-top: 96px;
+  }
+  .h-section {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(34px, 8vw, 64px);
+    line-height: 0.95;
+    color: var(--creme);
+    max-width: 16ch;
+  }
+  .h-section .accent { color: var(--corail-cl); }
+  .steps {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .step {
+    background: var(--nuit-3);
+    border: 1px solid var(--ligne-2);
+    border-radius: 18px;
+    padding: 24px 22px;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 60px 120px -44px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0,0,0,0.3);
   }
-  .chat-bar {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--chat-bar);
-    padding: 12px 14px;
+  .step .num {
+    font-family: 'Jersey 25', monospace;
+    font-size: 46px;
+    line-height: 1;
+    color: var(--corail);
+    opacity: 0.92;
   }
+  .step h3 {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 21px;
+    margin: 10px 0 8px;
+    color: var(--creme);
+    letter-spacing: 0.01em;
+  }
+  .step p { font-size: 15px; color: var(--doux); }
+  .step p strong { color: var(--creme); }
+
+  /* ====================================================== */
+  /* MARQUEE photos argentiques                             */
+  /* ====================================================== */
+  .marquee {
+    overflow: hidden;
+    padding: 30px 0 12px;
+    background: var(--nuit-2);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 18px;
+    width: max-content;
+    animation: scroll 34s linear infinite;
+  }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .frame {
+    flex: none;
+    width: 230px;
+    background: #F6EFE6;
+    padding: 9px 9px 12px;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px -22px rgba(0,0,0,0.8);
+  }
+  .frame:nth-child(odd)  { transform: rotate(-2.2deg); }
+  .frame:nth-child(even) { transform: rotate(1.8deg); }
+  .frame .ph {
+    height: 150px; border-radius: 2px; overflow: hidden;
+    background: #16110D; position: relative;
+  }
+  .frame .ph img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.03) sepia(0.06); }
+  .frame .cap {
+    margin-top: 7px; text-align: center;
+    font-family: 'Caveat', cursive; font-weight: 700;
+    font-size: 20px; color: #5A3B2A; line-height: 1;
+  }
+
+  /* ====================================================== */
+  /* CONVERSATION (voici Louise)                            */
+  /* ====================================================== */
+  .louise-band { background: var(--nuit); padding-top: 96px; }
+  .conv-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  .conv-side p { margin-top: 16px; font-size: 16.5px; color: var(--doux); max-width: 42ch; }
+  .conv-side p strong { color: var(--creme); }
+  .phone {
+    max-width: 380px; margin: 0 auto; width: 100%;
+    background: var(--chat-bg);
+    border: 1px solid rgba(246,239,230,.1);
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 60px 110px -44px rgba(0,0,0,0.85);
+  }
+  .chat-bar { display: flex; align-items: center; gap: 12px; background: var(--chat-bar); padding: 12px 14px; }
   .chat-back { color: #8696A0; flex: none; }
   .avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 32% 28%, #FFE0AE, var(--ambre));
+    width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #FFD9A0, var(--corail));
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 21px;
-    color: #5A2C12;
-    flex: none;
+    font-family: 'Anton', sans-serif; font-size: 19px; color: #5A2012; flex: none;
   }
   .chat-bar .who { flex: 1; min-width: 0; }
   .chat-bar .nom { font-weight: 600; font-size: 16px; color: #E9EDEF; line-height: 1.2; }
   .chat-bar .statut { font-size: 12.5px; color: var(--chat-meta); }
-  .chat-bar .ico { color: #8696A0; }
-
   .chat-corps {
-    padding: 16px 9px 14px;
-    display: flex; flex-direction: column; gap: 6px;
-    background:
-      linear-gradient(rgba(11,20,26,0.94), rgba(11,20,26,0.94)),
+    padding: 16px 9px 14px; display: flex; flex-direction: column; gap: 6px;
+    background: linear-gradient(rgba(11,20,26,0.94), rgba(11,20,26,0.94)),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3Ccircle cx='80' cy='60' r='1.5'/%3E%3Ccircle cx='50' cy='100' r='2'/%3E%3C/g%3E%3C/svg%3E");
   }
-
-  .jour {
-    align-self: center;
-    font-size: 11.5px;
-    color: #C5CDD2;
-    background: #182229;
-    padding: 4px 12px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-  }
-  .bulle {
-    max-width: 84%;
-    padding: 7px 9px 5px;
-    border-radius: 8px;
-    font-size: 14.3px;
-    line-height: 1.42;
-    color: var(--chat-txt);
-    box-shadow: 0 1px 1px rgba(0,0,0,.18);
-  }
-  .bulle .meta {
-    display: inline-flex; align-items: center; gap: 3px;
-    font-size: 10.5px; color: var(--chat-meta);
-    float: right;
-    margin: 9px -1px -1px 12px;
-  }
+  .jour { align-self: center; font-size: 11.5px; color: #C5CDD2; background: #182229; padding: 4px 12px; border-radius: 8px; margin-bottom: 6px; }
+  .bulle { max-width: 84%; padding: 7px 9px 5px; border-radius: 8px; font-size: 14.3px; line-height: 1.42; color: var(--chat-txt); box-shadow: 0 1px 1px rgba(0,0,0,.18); }
+  .bulle .meta { display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; color: var(--chat-meta); float: right; margin: 9px -1px -1px 12px; }
   .bulle.in  { background: var(--bulle-in);  align-self: flex-start; border-top-left-radius: 2px; }
   .bulle.out { background: var(--bulle-out); align-self: flex-end;   border-top-right-radius: 2px; }
   .bulle.out .meta { color: var(--chat-meta-out); }
   .bulle.out .meta .check { color: #53BDEB; }
-
-  .typing {
-    background: var(--bulle-in);
-    align-self: flex-start;
-    border-radius: 8px;
-    border-top-left-radius: 2px;
-    padding: 12px 14px;
-    display: inline-flex; gap: 4px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.18);
-  }
-  .typing i {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--chat-meta);
-    animation: tape 1.3s ease-in-out infinite;
-  }
+  .typing { background: var(--bulle-in); align-self: flex-start; border-radius: 8px; border-top-left-radius: 2px; padding: 12px 14px; display: inline-flex; gap: 4px; }
+  .typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--chat-meta); animation: tape 1.3s ease-in-out infinite; }
   .typing i:nth-child(2) { animation-delay: .18s; }
   .typing i:nth-child(3) { animation-delay: .36s; }
-  @keyframes tape {
-    0%, 60%, 100% { transform: translateY(0); opacity: .45; }
-    30%           { transform: translateY(-4px); opacity: 1; }
-  }
+  @keyframes tape { 0%,60%,100%{transform:translateY(0);opacity:.45} 30%{transform:translateY(-4px);opacity:1} }
 
-  .phone-side {
-    margin-top: 30px;
-    text-align: center;
-  }
-  .phone-side h3 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(26px, 6vw, 36px);
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    color: var(--creme);
-    max-width: 16ch;
-    margin: 0 auto;
-  }
-  .phone-side h3 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
-  .phone-side p { margin-top: 14px; font-size: 16px; color: var(--doux); max-width: 40ch; margin-left: auto; margin-right: auto; }
-
-  /* ============ Polaroid près du mockup (rappel discret) ============ */
-  .pola-mockup {
-    width: 150px;
-    position: absolute;
-    bottom: -52px; left: -34px;
-    z-index: 2;
-    transform: rotate(-5deg);
-    display: none;
-  }
-  .pola-mockup .photo { height: 118px; }
-  .pola-mockup .legende { font-size: 19px; }
-
-  /* ============ Note manuscrite près du mockup ============ */
-  .note-main {
-    font-family: 'Caveat', cursive;
-    font-weight: 400;
-    color: var(--or);
-    line-height: 1.05;
-  }
-
-  /* ============ 3 étapes ============ */
-  .etapes { display: flex; flex-direction: column; gap: 18px; }
-  .etape {
+  /* ====================================================== */
+  /* FATIGUÉ DE TINDER (comparaison 2 colonnes)             */
+  /* ====================================================== */
+  .compare-band {
+    position: relative;
     background: var(--nuit-2);
-    border: 1px solid var(--ligne-2);
-    border-radius: 22px;
-    padding: 26px 24px;
-    box-shadow: 0 24px 50px -34px rgba(0, 0, 0, 0.7);
+    padding-top: 96px;
   }
-  .etape .num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: rgba(232, 132, 90, 0.14);
-    border: 1px solid rgba(242, 168, 120, 0.3);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--ambre-cl);
-    margin-bottom: 14px;
+  .compare {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
-  .etape h3 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 24px;
-    letter-spacing: -0.01em;
-    margin-bottom: 7px;
-    color: var(--creme);
+  .col {
+    border-radius: 18px;
+    padding: 28px 24px;
+    border: 1px solid var(--ligne);
   }
-  .etape h3 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
-  .etape p { font-size: 15.5px; color: var(--doux); }
-  .etape p strong { color: var(--creme); font-weight: 700; }
-
-  /* ============ Parfois Louise dit non ============ */
-  .non-sec h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(36px, 9vw, 56px);
-    line-height: 1.06;
-    letter-spacing: -0.018em;
-    max-width: 14ch;
-    color: var(--creme);
+  .col.lume {
+    background: linear-gradient(160deg, rgba(242,112,91,0.14), rgba(242,193,78,0.06));
+    border-color: rgba(255,140,122,0.4);
   }
-  .non-sec h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
-  .non-sec .intro { margin-top: 16px; font-size: 16.5px; color: var(--doux); max-width: 48ch; }
-  .bulle-non {
-    margin-top: 28px;
-    max-width: 460px;
-    background: var(--bulle-in);
-    border-radius: 10px;
-    border-top-left-radius: 3px;
-    padding: 13px 15px 10px;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--chat-txt);
-    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  .col.apps { background: var(--nuit-3); }
+  .col .tete {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Anton', sans-serif; text-transform: uppercase;
+    font-size: 22px; margin-bottom: 16px; letter-spacing: 0.01em;
   }
-  .bulle-non .qui { display: block; font-size: 12.5px; font-weight: 700; color: var(--ambre-cl); margin-bottom: 4px; }
-  .bulle-non .meta { float: right; font-size: 10.5px; color: var(--chat-meta); margin: 10px 0 0 10px; }
-  .non-sec .chute {
+  .col.lume .tete { color: var(--corail-cl); }
+  .col.apps .tete { color: var(--doux); }
+  .col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .col li { font-size: 15.5px; display: flex; gap: 11px; align-items: flex-start; }
+  .col li .ic { flex: none; margin-top: 2px; }
+  .col.lume li { color: var(--creme); }
+  .col.apps li { color: var(--doux); }
+  .col.apps li { text-decoration: none; }
+  .stat-pill {
     margin-top: 24px;
-    font-size: 15.5px;
-    color: var(--doux);
-    max-width: 48ch;
+    display: inline-flex; align-items: baseline; gap: 12px;
+    background: var(--nuit-3); border: 1px solid var(--ligne);
+    border-radius: 16px; padding: 16px 20px;
   }
-  .non-sec .chute strong { color: var(--creme); font-weight: 700; }
+  .stat-pill .n { font-family: 'Anton', sans-serif; font-size: 44px; line-height: 0.9; color: var(--corail-cl); }
+  .stat-pill .t { font-size: 13.5px; color: var(--doux); max-width: 26ch; }
+  .stat-pill .t .src { display: block; color: var(--doux-2); font-size: 12px; margin-top: 2px; }
 
-  /* ============ CTA final ============ */
+  /* ====================================================== */
+  /* PARFOIS LOUISE DIT NON (signature)                     */
+  /* ====================================================== */
+  .non-band { position: relative; background: var(--nuit); padding-top: 96px; }
+  .non-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
+  .non-grid .intro { margin-top: 16px; font-size: 16.5px; color: var(--doux); max-width: 46ch; }
+  .bulle-non {
+    max-width: 460px; background: var(--bulle-in);
+    border-radius: 12px; border-top-left-radius: 3px;
+    padding: 16px 18px 12px; font-size: 15.5px; line-height: 1.5; color: var(--chat-txt);
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.85);
+  }
+  .bulle-non .qui { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: var(--corail-cl); margin-bottom: 8px; }
+  .bulle-non .meta { float: right; font-size: 10.5px; color: var(--chat-meta); margin: 10px 0 0 10px; }
+  .non-grid .chute { margin-top: 22px; font-size: 15.5px; color: var(--doux); max-width: 46ch; }
+  .non-grid .chute strong { color: var(--creme); }
+
+  /* ====================================================== */
+  /* FAQ accordéon                                          */
+  /* ====================================================== */
+  .faq-band { background: var(--nuit-2); padding-top: 96px; }
+  .faq { margin-top: 36px; max-width: 760px; }
+  details {
+    border-bottom: 1px solid var(--ligne);
+    padding: 4px 0;
+  }
+  details summary {
+    cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 20px 2px;
+    font-weight: 600; font-size: 17px; color: var(--creme);
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary .plus {
+    flex: none; width: 26px; height: 26px; position: relative;
+    transition: transform .25s ease;
+  }
+  details summary .plus::before, details summary .plus::after {
+    content: ""; position: absolute; background: var(--corail-cl); border-radius: 2px;
+    top: 50%; left: 50%;
+  }
+  details summary .plus::before { width: 14px; height: 2px; transform: translate(-50%,-50%); }
+  details summary .plus::after  { width: 2px; height: 14px; transform: translate(-50%,-50%); }
+  details[open] summary .plus { transform: rotate(135deg); }
+  details .ans { padding: 0 2px 22px; font-size: 15.5px; color: var(--doux); max-width: 64ch; }
+  details .ans strong { color: var(--creme); }
+  details .ans code { font-family: 'Jersey 25', monospace; font-size: 1.15em; color: var(--or); letter-spacing: 0.04em; }
+
+  /* ====================================================== */
+  /* BANDEAU FINAL                                          */
+  /* ====================================================== */
   .final {
-    margin-top: 100px;
     position: relative;
     text-align: center;
-    padding: 84px 22px 90px;
+    padding: 110px 22px 120px;
     overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(242,112,91,0.35) 0%, rgba(242,112,91,0.08) 50%, transparent 72%),
+      var(--nuit);
   }
-  .final::before {
-    content: "";
-    position: absolute;
-    bottom: -220px; left: 50%;
-    transform: translateX(-50%);
-    width: 720px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 40%, rgba(232, 184, 115, 0.34) 0%, rgba(232, 132, 90, 0.16) 46%, rgba(232, 132, 90, 0) 70%);
-    pointer-events: none;
-  }
-  .final > * { position: relative; }
   .final h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(40px, 10vw, 68px);
-    line-height: 1.04;
-    letter-spacing: -0.018em;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(46px, 13vw, 104px);
+    line-height: 0.9;
     color: var(--creme);
   }
-  .final h2 em { font-style: italic; font-weight: 400; color: var(--ambre-cl); }
-  .final p { margin-top: 16px; color: var(--doux); font-size: 16.5px; max-width: 42ch; margin-left: auto; margin-right: auto; }
+  .final h2 .accent { color: var(--corail-cl); }
+  .final p { margin-top: 18px; color: var(--doux); font-size: 16.5px; max-width: 40ch; margin-left: auto; margin-right: auto; }
   .final p strong { color: var(--creme); }
-  .final .qr-zone { margin-top: 30px; }
-  .final .micro { margin-top: 14px; font-size: 13px; color: var(--doux-2); }
+  .final .qr-zone { margin-top: 28px; display: none; }
+  .final .actions { margin-top: 26px; display: inline-flex; flex-direction: column; align-items: center; gap: 12px; }
+  .final .micro { margin-top: 12px; font-size: 13px; color: var(--doux-2); }
+  .qr-tile { display: inline-block; background: #fff; padding: 12px; border-radius: 14px; line-height: 0; box-shadow: 0 18px 44px -22px rgba(0,0,0,0.7); }
+  .qr-tile img, .qr-tile canvas { border-radius: 4px; display: block; }
+  .qr-hint { display: block; margin-top: 10px; font-size: 12.5px; color: var(--doux-2); }
 
-  /* ============ Footer ============ */
+  /* ====================================================== */
+  /* FOOTER                                                 */
+  /* ====================================================== */
   footer {
     border-top: 1px solid var(--ligne);
-    padding: 32px 0 112px;
-    font-size: 13.5px;
-    color: var(--doux-2);
-    background: var(--nuit-2);
+    padding: 34px 0 110px;
+    font-size: 13.5px; color: var(--doux-2);
+    background: var(--nuit);
   }
   footer .wrap { display: flex; flex-direction: column; gap: 9px; }
   footer strong { color: var(--creme); font-weight: 700; }
-  footer a { color: var(--doux); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(243,234,221,.3); }
-  footer a:hover { color: var(--creme); text-decoration-color: var(--ambre); }
+  footer a { color: var(--doux); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(246,239,230,.3); }
+  footer a:hover { color: var(--creme); text-decoration-color: var(--corail); }
+  footer .pixmark { font-family: 'Jersey 25', monospace; color: var(--corail-cl); font-size: 16px; }
 
-  /* ============ Barre sticky mobile ============ */
+  /* ====================================================== */
+  /* Sticky CTA mobile                                      */
+  /* ====================================================== */
   .sticky-cta {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 70;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    background: linear-gradient(rgba(26,20,16,0), rgba(26,20,16,.96) 32%);
-    transform: translateY(110%);
+    background: linear-gradient(rgba(18,13,10,0), rgba(18,13,10,.96) 32%);
+    transform: translateY(115%);
     transition: transform .35s cubic-bezier(.2,.7,.2,1);
     pointer-events: none;
   }
   .sticky-cta.visible { transform: translateY(0); pointer-events: auto; }
-  .sticky-cta .btn-wa { margin-top: 0; max-width: 480px; display: flex; margin-left: auto; margin-right: auto; box-shadow: 0 10px 30px -8px rgba(0, 0, 0, .55); }
+  .sticky-cta .btn-wa { width: 100%; max-width: 480px; display: flex; margin: 0 auto; box-shadow: 0 10px 30px -8px rgba(0,0,0,.55); }
 
-  /* ============ Reveals au scroll ============ */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(26px);
-    transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
-  }
-  [data-reveal].in { opacity: 1; transform: translateY(0); }
+  /* Reveals : actifs seulement si <html class="reveal-on"> (sécurité : visible par défaut) */
+  .reveal-on [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal-on [data-reveal].in { opacity: 1; transform: translateY(0); }
 
+  /* prefers-reduced-motion : on coupe le tremblement et tout le reste */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
+    .jitter-text { filter: none !important; }
+    .hero-bg .shot-2 { opacity: 0; }
+    .rotator .word:first-child { opacity: 1 !important; position: static; transform: none; }
+    .rotator .word:not(:first-child) { display: none; }
     [data-reveal] { opacity: 1; transform: none; }
   }
 
-  /* ============ Desktop ============ */
+  /* ====================================================== */
+  /* DESKTOP                                                */
+  /* ====================================================== */
   @media (min-width: 880px) {
     body { font-size: 17px; }
     .wrap { padding: 0 40px; }
-    header { padding-top: 32px; }
-    .hero { padding: 92px 40px 40px; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .cta-card { margin-top: 0; padding: 36px 32px; }
-    .qr-zone { display: block; }
-    .btn-wa { margin-top: 22px; }
-    section.wrap { margin-top: 150px; }
-    .manifeste-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.92fr;
-      gap: 70px;
-      align-items: center;
-    }
-    .conv-grid {
-      display: grid;
-      grid-template-columns: 0.82fr 1.18fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .phone-side { text-align: left; margin-top: 0; }
-    .phone-side h3, .phone-side p { margin-left: 0; }
-    /* Hero : deux polaroids scotchés, empilés à côté du bloc texte */
-    .hero-polas {
-      margin-top: 0;
-      justify-content: flex-start;
-      gap: 14px;
-    }
-    .hero-polas .pola { width: 168px; }
-    .hero-polas .pola .photo { height: 132px; }
-    .hero-polas .pola.secondaire { display: block; }
-    /* Le polaroid de rappel apparaît près du mockup sur grand écran */
-    .pola-mockup { display: block; }
-    .phone { transform: rotate(-1.4deg); }
-    .phone:hover { transform: rotate(0deg); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-    .etapes { flex-direction: row; gap: 22px; }
-    .etape { flex: 1; padding: 30px 28px; }
-    .non-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
+    .topbar { padding: 28px 40px; }
+    .hero { padding: 0 40px 70px; }
+    .hero .pix-heart { top: 16%; right: 11%; }
+    .hero-actions { flex-direction: row; align-items: center; gap: 16px; }
+    .sec { padding: 110px 0; }
+    .steps { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .conv-grid { grid-template-columns: 0.95fr 1.05fr; gap: 60px; }
+    .conv-side { order: 1; }
+    .compare { grid-template-columns: 1fr 1fr; gap: 22px; }
+    .non-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+    .final .qr-zone { display: block; }
+    .final .actions { flex-direction: row; }
     .sticky-cta { display: none; }
-    .final { margin-top: 160px; padding: 120px 22px 130px; }
-    footer { padding-bottom: 44px; }
-    footer .wrap {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
+    footer { padding-bottom: 46px; }
+    footer .wrap { flex-direction: row; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 18px; }
   }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <div class="logo">lume <span class="soleil" aria-hidden="true"></span></div>
-  <div class="header-tag">Beta sur invitation · Paris</div>
+<!-- Filtres SVG du titre stop-motion (les 4 jitter) -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <filter id="jitter-0" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="jitter-1" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="10" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="jitter-2" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="17" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="jitter-3" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="24" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="logo">lume<span class="dot" aria-hidden="true"></span></div>
+  <div class="tag">Beta · Paris</div>
 </header>
 
 <main>
 
   <!-- ============ HERO ============ -->
-  <div class="hero wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="hero-eyebrow">Louise · ta matchmaker sur WhatsApp</p>
-        <h1>
-          <span class="l1">Arrête de swiper.</span>
-          <span class="l2">Parle à Louise.</span>
-        </h1>
-        <p class="sub">Louise apprend qui tu es, vraiment, puis te présente <strong>des gens choisis pour toi</strong> et organise le date dans un joli lieu parisien.</p>
-        <p class="hero-note"><span class="coeur" aria-hidden="true">&#10022;</span>Rien à installer. Elle est déjà dans ton WhatsApp.</p>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img class="shot-1" src="assets/c1_kiss_sunset.jpg" alt="" fetchpriority="high">
+      <img class="shot-2" src="assets/p1_terrace_coffee.jpg" alt="">
+      <div class="hero-grain"></div>
+    </div>
 
-        <div class="hero-polas" aria-hidden="true">
-          <div class="pola">
-            <span class="scotch"></span>
-            <div class="photo"><img src="assets/c1_kiss_sunset.jpg" alt="" width="900" height="600" loading="lazy"></div>
-            <p class="legende">le premier regard</p>
-          </div>
-          <div class="pola secondaire">
-            <span class="scotch"></span>
-            <div class="photo"><img src="assets/t2_wineglass_hand.jpg" alt="" width="900" height="600" loading="lazy"></div>
-            <p class="legende">le dernier verre a duré</p>
-          </div>
-        </div>
-      </div>
+    <!-- pixel heart (parcimonie) -->
+    <svg class="pix pix-heart" width="62" height="56" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+      <g fill="#FF8C7A">
+        <rect x="2" y="1" width="4" height="1"/><rect x="10" y="1" width="4" height="1"/>
+        <rect x="1" y="2" width="6" height="1"/><rect x="9" y="2" width="6" height="1"/>
+        <rect x="1" y="3" width="14" height="2"/>
+        <rect x="2" y="5" width="12" height="1"/>
+        <rect x="3" y="6" width="10" height="1"/>
+        <rect x="4" y="7" width="8" height="1"/>
+        <rect x="5" y="8" width="6" height="1"/>
+        <rect x="6" y="9" width="4" height="1"/>
+        <rect x="7" y="10" width="2" height="1"/>
+      </g>
+    </svg>
 
-      <div class="cta-card" id="cta">
-        <span class="cta-scribble manuscrit" aria-hidden="true">pas une appli de plus&#8230;</span>
-        <h2>Écris-lui maintenant</h2>
-        <p class="hint">Scanne avec ton téléphone, la conversation s&rsquo;ouvre dans WhatsApp.</p>
-        <div class="qr-zone">
-          <div class="qr-tile" id="qr-hero" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
-        </div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Louise · ta matchmaker sur WhatsApp</p>
+      <h1>
+        <span class="line jitter-text">Arrête</span>
+        <span class="line jitter-text">de swiper.</span>
+        <span class="line jitter-text">Rencontre,</span>
+        <span class="line jitter-text">
+          <span class="rotator" aria-label="autour d'un verre, d'une expo, d'un dimanche">
+            <span class="ghost">d'un dimanche</span>
+            <span class="word">d'un verre</span>
+            <span class="word">d'une expo</span>
+            <span class="word">d'un dimanche</span>
+          </span>
+        </span>
+      </h1>
+      <p class="sub">Louise apprend qui tu es, <strong>vraiment</strong>, puis te présente <em>quelqu'un de choisi pour toi</em> et organise le date dans un vrai lieu parisien.</p>
+
+      <div class="hero-actions">
         <a class="btn-wa js-wa" href="#" rel="noopener">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
           Écrire à Louise
         </a>
-        <p class="micro">Gratuit pendant la beta · Aucune app à installer</p>
+        <a class="btn-glass" href="#comment">Comment ça marche</a>
       </div>
+      <p class="hero-micro">Gratuit pendant la beta · Aucune app à installer</p>
+    </div>
+  </section>
+
+  <!-- ============ COMMENT ÇA MARCHE (4 étapes) ============ -->
+  <section class="steps-band torn-top" id="comment">
+    <div class="wrap sec" style="padding-top:0">
+      <p class="sec-label"><span class="pixstar">&#9733;</span> Comment ça marche</p>
+      <h2 class="h-section" data-reveal>Quatre messages, <span class="accent">une rencontre.</span></h2>
+      <div class="steps" data-reveal>
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Dis-lui qui tu es</h3>
+          <p>Sur WhatsApp, comme à une amie. Pas de formulaire, pas de bio à fignoler. <strong>Juste une conversation.</strong></p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Elle cherche pour toi</h3>
+          <p>Louise prend le temps. Elle écarte ce qui ne te ressemble pas et garde <strong>ce qui pourrait te faire vibrer.</strong></p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Elle te présente quelqu'un</h3>
+          <p>Une rencontre, avec son pourquoi. Jamais un catalogue, jamais au hasard. <strong>Tu sais à qui tu as affaire.</strong></p>
+        </div>
+        <div class="step">
+          <div class="num">04</div>
+          <h3>Elle organise le date</h3>
+          <p>Si c'est oui des deux côtés, le rendez-vous est calé dans <strong>un vrai lieu parisien.</strong> Tu n'as qu'à y aller.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE photos ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="frame"><div class="ph"><img src="assets/c1_kiss_sunset.jpg" alt="" loading="lazy"></div><p class="cap">le premier regard</p></div>
+      <div class="frame"><div class="ph"><img src="assets/t2_wineglass_hand.jpg" alt="" loading="lazy"></div><p class="cap">santé</p></div>
+      <div class="frame"><div class="ph"><img src="assets/c2_bench_water.jpg" alt="" loading="lazy"></div><p class="cap">quai de Seine, 22h</p></div>
+      <div class="frame"><div class="ph"><img src="assets/p1_terrace_coffee.jpg" alt="" loading="lazy"></div><p class="cap">terrasse, fin d'été</p></div>
+      <!-- duplication pour la boucle -->
+      <div class="frame"><div class="ph"><img src="assets/c1_kiss_sunset.jpg" alt="" loading="lazy"></div><p class="cap">le premier regard</p></div>
+      <div class="frame"><div class="ph"><img src="assets/t2_wineglass_hand.jpg" alt="" loading="lazy"></div><p class="cap">santé</p></div>
+      <div class="frame"><div class="ph"><img src="assets/c2_bench_water.jpg" alt="" loading="lazy"></div><p class="cap">quai de Seine, 22h</p></div>
+      <div class="frame"><div class="ph"><img src="assets/p1_terrace_coffee.jpg" alt="" loading="lazy"></div><p class="cap">terrasse, fin d'été</p></div>
     </div>
   </div>
 
-  <!-- ============ MANIFESTE ANTI-SWIPE ============ -->
-  <section class="wrap manifeste" id="manifeste">
-    <p class="sec-label">Le constat</p>
-    <div class="manifeste-grid" data-reveal>
-      <div>
-        <h2>Le swipe t&rsquo;a épuisé. <em>Ce n&rsquo;est pas toi le problème.</em></h2>
-        <p class="lede">Des heures à faire défiler des visages. Des matchs qui ne mènent nulle part, des conversations qui meurent, des dates moyens par dépit. Tu n&rsquo;es pas difficile, <strong>tu es juste fatigué d&rsquo;un catalogue qui n&rsquo;a jamais pris le temps de te connaître.</strong></p>
-        <div class="triple">
-          <span>Pas d&rsquo;app à télécharger</span>
-          <span>Pas de profil à remplir</span>
-          <span>Pas de swipe</span>
+  <!-- ============ VOICI LOUISE (conversation) ============ -->
+  <section class="louise-band">
+    <div class="wrap sec" style="padding-top:0">
+      <p class="sec-label"><span class="pixstar">&#9733;</span> Voici Louise</p>
+      <div class="conv-grid">
+        <div class="conv-side" data-reveal>
+          <h2 class="h-section">Elle te connaît, <span class="accent">vraiment.</span></h2>
+          <p>Pas de cases à cocher, pas de profil à vendre. Juste une vraie conversation, à ton rythme, comme avec <strong>l'amie qui te connaît assez bien pour te présenter la bonne personne.</strong></p>
         </div>
-      </div>
-      <div class="stat-line">
-        <div class="stat-num">78<span class="pct">%</span></div>
-        <div class="stat-txt">
-          des utilisateurs d&rsquo;apps de rencontre se déclarent épuisés par le swipe.
-          <span class="src">Source : Forbes Health, 2024.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONVERSATION WHATSAPP ============ -->
-  <section class="wrap" id="conversation">
-    <p class="sec-label">Voici Louise</p>
-    <div class="conv-grid">
-      <div class="phone-side" data-reveal>
-        <h3>Louise apprend qui tu es, <em>vraiment</em>.</h3>
-        <p>Pas de formulaire, pas de cases à cocher. Juste une conversation, à ton rythme, comme avec une amie qui veut bien te présenter quelqu&rsquo;un.</p>
-      </div>
-      <div class="phone-scene" data-reveal>
-        <div class="phone" role="img" aria-label="Exemple de conversation WhatsApp avec Louise">
-          <div class="chat-bar">
-            <svg class="chat-back" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            <div class="avatar serif">L</div>
-            <div class="who">
-              <div class="nom">Louise</div>
-              <div class="statut">en ligne</div>
+        <div data-reveal>
+          <div class="phone" role="img" aria-label="Exemple de conversation WhatsApp avec Louise">
+            <div class="chat-bar">
+              <svg class="chat-back" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              <div class="avatar">L</div>
+              <div class="who"><div class="nom">Louise</div><div class="statut">en ligne</div></div>
             </div>
-            <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+            <div class="chat-corps">
+              <div class="jour">Aujourd'hui</div>
+              <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j'aimerais te connaître. On commence simple : c'est quoi ton prénom ?<span class="meta">19:02</span></div>
+              <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+              <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi. Je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
+              <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
+              <div class="bulle in">J'adore. On dirait que tu cherches quelqu'un qui sait s'attarder. Note prise.<span class="meta">19:08</span></div>
+              <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
+            </div>
           </div>
-          <div class="chat-corps">
-            <div class="jour">Aujourd&rsquo;hui</div>
-            <div class="bulle in">Coucou ! Avant de te présenter qui que ce soit, j&rsquo;aimerais vraiment te connaître. On commence simple : c&rsquo;est quoi ton prénom ?<span class="meta">19:02</span></div>
-            <div class="bulle out">Camille 🙂<span class="meta">19:04 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
-            <div class="bulle in">Enchantée Camille. Raconte-moi plutôt un dimanche parfait pour toi. Je préfère ça aux cases à cocher.<span class="meta">19:04</span></div>
-            <div class="bulle out">Marché le matin, sieste, et un dîner qui dure trop longtemps avec les bonnes personnes.<span class="meta">19:07 <svg class="check" width="15" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><path d="M11.07.65a.5.5 0 0 1 .71.7L5.61 8.7a.5.5 0 0 1-.73.03L.94 4.78a.5.5 0 1 1 .7-.71l3.55 3.54L11.07.65zm3.98 0a.5.5 0 0 1 .71.7l-6.17 7.35a.5.5 0 0 1-.73.03l-.46-.45.74-.86 5.91-6.77z"/></svg></span></div>
-            <div class="bulle in">J&rsquo;adore. On dirait que tu cherches quelqu&rsquo;un qui sait s&rsquo;attarder. Note prise.<span class="meta">19:08</span></div>
-            <div class="typing" aria-label="Louise est en train d'écrire"><i></i><i></i><i></i></div>
-          </div>
-        </div>
-        <div class="pola pola-mockup" aria-hidden="true">
-          <span class="scotch"></span>
-          <div class="photo"><img src="assets/c2_bench_water.jpg" alt="" width="900" height="600" loading="lazy"></div>
-          <p class="legende">quai de Seine, 22h</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3 ÉTAPES ============ -->
-  <section class="wrap" id="comment">
-    <p class="sec-label">Comment ça marche</p>
-    <div class="etapes" data-reveal>
-      <div class="etape">
-        <div class="num">1</div>
-        <h3>Tu lui écris</h3>
-        <p>Un message WhatsApp, c&rsquo;est tout. <strong>Rien à installer</strong>, aucun formulaire, aucune photo à mettre en vitrine.</p>
+  <!-- ============ FATIGUÉ DE TINDER & HINGE ============ -->
+  <section class="compare-band torn-top">
+    <div class="wrap sec" style="padding-top:0">
+      <p class="sec-label"><span class="pixstar">&#9733;</span> Le constat</p>
+      <h2 class="h-section" data-reveal>Fatigué·e de Tinder <span class="accent">&amp; Hinge ?</span></h2>
+      <div class="compare" data-reveal>
+        <div class="col lume">
+          <div class="tete">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Lume
+          </div>
+          <ul>
+            <li><span class="ic">&#9733;</span> Une rencontre prête, choisie pour toi.</li>
+            <li><span class="ic">&#9733;</span> Tu sais qui tu vas voir, et pourquoi.</li>
+            <li><span class="ic">&#9733;</span> Le date est déjà calé dans un vrai lieu.</li>
+            <li><span class="ic">&#9733;</span> Une amie qui te connaît, pas un algorithme.</li>
+          </ul>
+        </div>
+        <div class="col apps">
+          <div class="tete">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Les apps
+          </div>
+          <ul>
+            <li><span class="ic">&times;</span> Un swipe infini qui ne finit jamais.</li>
+            <li><span class="ic">&times;</span> Du small talk sans fin, des matchs morts.</li>
+            <li><span class="ic">&times;</span> À toi de tout organiser, si tu y crois encore.</li>
+            <li><span class="ic">&times;</span> Un catalogue qui veut que tu restes scotché·e.</li>
+          </ul>
+        </div>
       </div>
-      <div class="etape">
-        <div class="num">2</div>
-        <h3>Elle te connaît</h3>
-        <p>Quelques vraies conversations, à ton rythme. Tes non-négociables, ce qui te fait rire, ce que tu n&rsquo;oserais jamais mettre dans une bio.</p>
-      </div>
-      <div class="etape">
-        <div class="num">3</div>
-        <h3>Elle te présente <em>quelqu&rsquo;un</em></h3>
-        <p>Avec son pourquoi, jamais au hasard. Si c&rsquo;est oui des deux côtés, <strong>le date est déjà organisé</strong> dans un vrai lieu parisien.</p>
+      <div class="stat-pill" data-reveal>
+        <div class="n">78%</div>
+        <div class="t">des utilisateurs d'apps de rencontre se disent épuisés par le swipe.<span class="src">Source : Forbes Health, 2024.</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============ PARFOIS LOUISE DIT NON ============ -->
-  <section class="wrap non-sec" id="non">
-    <p class="sec-label">Ce qu&rsquo;une app ne te dira jamais</p>
-    <div class="non-grid" data-reveal>
-      <div>
-        <h2>Parfois, Louise dit <em>non</em>.</h2>
-        <p class="intro">Elle n&rsquo;a pas de quota de matchs à tenir. Quand elle n&rsquo;a trouvé personne à ta hauteur, elle te le dit, mot pour mot :</p>
-      </div>
-      <div>
-        <div class="bulle-non">
-          <span class="qui">Louise</span>
-          Cette semaine je n&rsquo;ai pas trouvé de match qui vaille ton temps, je préfère te faire attendre que t&rsquo;envoyer vers un date moyen.
-          <span class="meta">21:38</span>
+  <section class="non-band torn-top">
+    <div class="wrap sec" style="padding-top:0">
+      <p class="sec-label"><span class="pixstar">&#9733;</span> Ce qu'une app ne te dira jamais</p>
+      <div class="non-grid">
+        <div data-reveal>
+          <h2 class="h-section">Parfois, Louise <span class="accent">dit non.</span></h2>
+          <p class="intro">Elle n'a pas de quota de matchs à tenir. Quand rien ne vaut ton temps cette semaine, elle te le dit, mot pour mot.</p>
         </div>
-        <p class="chute">Une app de swipe ne t&rsquo;enverra jamais ce message : son modèle, c&rsquo;est que tu restes scotché. <strong>Le nôtre, c&rsquo;est que tu n&rsquo;aies plus besoin de nous.</strong></p>
+        <div data-reveal>
+          <div class="bulle-non">
+            <span class="qui"><span class="avatar" style="width:22px;height:22px;font-size:11px">L</span> Louise</span>
+            Cette semaine je n'ai trouvé personne qui vaille ton temps. Je préfère te faire patienter que t'envoyer vers un date moyen. Je reviens vers toi très vite.
+            <span class="meta">21:38</span>
+          </div>
+          <p class="chute">Une app de swipe ne t'enverra jamais ce message : son modèle, c'est que tu restes. <strong>Le nôtre, c'est que tu n'aies plus besoin de nous.</strong></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CTA FINAL ============ -->
+  <!-- ============ FAQ ============ -->
+  <section class="faq-band torn-top">
+    <div class="wrap sec" style="padding-top:0">
+      <p class="sec-label"><span class="pixstar">&#9733;</span> Questions</p>
+      <h2 class="h-section" data-reveal>Tout ce que tu te demandes.</h2>
+      <div class="faq" data-reveal>
+        <details>
+          <summary>Comment Louise matche ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Elle apprend à te connaître par la conversation : tes envies, tes non-négociables, ton humour, ce que tu ne mettrais jamais dans une bio. Puis elle cherche la personne qui colle, pas le profil qui ressemble. <strong>Une rencontre à la fois, choisie pour toi.</strong></div>
+        </details>
+        <details>
+          <summary>Comment ça marche, concrètement ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Tu écris à Louise sur WhatsApp. Vous discutez, à ton rythme. Quand elle a trouvé quelqu'un, elle te le présente avec son pourquoi. Si c'est oui des deux côtés, <strong>elle organise le date dans un vrai lieu parisien.</strong> Rien à installer.</div>
+        </details>
+        <details>
+          <summary>Qu'est-ce que je sais de mon match avant ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Louise te raconte l'essentiel : qui c'est, ce qui vous rapproche, et pourquoi elle pense à vous deux. Pas de scroll dans un profil, juste <strong>ce qu'une amie te dirait avant de te présenter quelqu'un.</strong></div>
+        </details>
+        <details>
+          <summary>Et si ça ne me plaît pas ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Tu le dis à Louise, simplement. Elle t'écoute, ajuste, et cherche mieux la prochaine fois. <strong>Aucune obligation, aucune pression</strong> : tu peux toujours passer.</div>
+        </details>
+        <details>
+          <summary>Qui peut participer ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Pour l'instant, les personnes <strong>majeures (18 ans et plus) à Paris.</strong> La beta ouvre par petites vagues, sur invitation. D'autres villes suivront.</div>
+        </details>
+        <details>
+          <summary>Où ont lieu les dates ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Dans de vrais lieux parisiens choisis avec soin : un bar à vin, une terrasse, une expo, un café qui a une âme. <strong>Jamais un lien visio, toujours un endroit où trinquer pour de vrai.</strong></div>
+        </details>
+        <details>
+          <summary>Et mes données ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="ans">Elles restent privées et ne servent qu'à te présenter quelqu'un. Tu n'es jamais un produit à revendre. Tu veux tout effacer ? Écris <code>SUPPRIME</code> à Louise, et c'est fait.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BANDEAU FINAL ============ -->
   <div class="final" id="final">
-    <h2 data-reveal>Arrête de swiper.<br><em>Parle à Louise.</em></h2>
-    <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise, <strong>c&rsquo;est elle qui te répond</strong>, vraiment.</p>
+    <h2 data-reveal>Rencontre <span class="accent">sans swiper.</span></h2>
+    <p data-reveal>La beta parisienne ouvre par petites vagues. Écris à Louise, <strong>c'est elle qui te répond</strong>, vraiment.</p>
     <div class="qr-zone" data-reveal>
       <div class="qr-tile" id="qr-final" aria-label="QR code pour écrire à Louise sur WhatsApp"></div>
+      <span class="qr-hint">Scanne, la conversation s'ouvre dans WhatsApp.</span>
     </div>
-    <a class="btn-wa js-wa" href="#" rel="noopener" data-reveal>
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
-      Écrire à Louise
-    </a>
+    <div class="actions" data-reveal>
+      <a class="btn-wa js-wa" href="#" rel="noopener">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
+        Écrire à Louise
+      </a>
+    </div>
     <p class="micro" data-reveal>Gratuit pendant la beta · Réponse en quelques minutes</p>
   </div>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <p><strong>Lume</strong> · beta sur invitation, Paris.</p>
-    <p>Tes données restent privées : écris <strong>SUPPRIME</strong> à Louise pour tout effacer. <a href="confidentialite.md">Confidentialité</a></p>
+    <p><span class="pixmark">&#9829;</span> <strong>Lume</strong> · Beta sur invitation · Paris</p>
+    <p>Tes données restent privées, écris <strong>SUPPRIME</strong> à Louise pour tout effacer. <a href="confidentialite.md">Confidentialité</a></p>
     <p>Contact : <a href="mailto:thibautsauvager@gmail.com">thibautsauvager@gmail.com</a></p>
   </div>
 </footer>
 
-<!-- ============ BARRE STICKY MOBILE ============ -->
+<!-- Sticky CTA mobile -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
   <a class="btn-wa js-wa" href="#" rel="noopener" tabindex="-1">
     <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.1.2-.3.3-.5v-.5L9.7 7.6c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.8 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3z"/></svg>
@@ -908,64 +939,60 @@
   </a>
 </div>
 
-<!-- Lib QR (seule dependance externe) · qrcodejs, expose le global QRCode -->
+<!-- Lib QR (seule dépendance externe JS) -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
   // ===================== CONFIG =====================
-  // (format international SANS le "+", ex: 33612345678)
-  const WHATSAPP_NUMBER = "33759610062"; // le numero de Louise
+  // numéro au format international SANS le "+"
+  const WHATSAPP_NUMBER = "33759610062"; // le numéro de Louise
   const PREFILLED_MESSAGE = "Salut Louise !";
   // ==================================================
 
-  const waLink = "https://wa.me/" + WHATSAPP_NUMBER +
-    "?text=" + encodeURIComponent(PREFILLED_MESSAGE);
-
-  // Tous les boutons WhatsApp
+  const waLink = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(PREFILLED_MESSAGE);
   document.querySelectorAll(".js-wa").forEach(function (el) { el.href = waLink; });
 
-  // QR codes (generes cote client, fallback : on masque, le bouton suffit)
   function makeQR(id) {
     const target = document.getElementById(id);
     if (!target) return;
-    if (typeof QRCode === "undefined") {
-      target.closest(".qr-zone").style.display = "none";
-      return;
-    }
+    if (typeof QRCode === "undefined") { target.closest(".qr-zone").style.display = "none"; return; }
     try {
-      new QRCode(target, {
-        text: waLink,
-        width: 176,
-        height: 176,
-        colorDark: "#1A1410",
-        colorLight: "#FFFFFF",
-        correctLevel: QRCode.CorrectLevel.M
-      });
-    } catch (e) {
-      target.closest(".qr-zone").style.display = "none";
-    }
+      new QRCode(target, { text: waLink, width: 168, height: 168, colorDark: "#120D0A", colorLight: "#FFFFFF", correctLevel: QRCode.CorrectLevel.M });
+    } catch (e) { target.closest(".qr-zone").style.display = "none"; }
   }
-  makeQR("qr-hero");
   makeQR("qr-final");
 
-  // Reveals au scroll
+  // Reveals au scroll (progressive enhancement, jamais bloquant pour le contenu).
+  // On arme le masquage, puis on révèle ce qui entre dans le viewport via un simple
+  // calcul de position au scroll (fiable même si l'onglet est throttlé). Un filet de
+  // sécurité révèle tout après un court délai pour ne JAMAIS laisser de contenu caché.
   (function () {
-    const els = document.querySelectorAll("[data-reveal]");
-    if (!("IntersectionObserver" in window)) {
-      els.forEach(function (el) { el.classList.add("in"); });
-      return;
+    const els = [].slice.call(document.querySelectorAll("[data-reveal]"));
+    if (!els.length) return;
+
+    document.documentElement.classList.add("reveal-on");
+
+    function check() {
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      for (let i = els.length - 1; i >= 0; i--) {
+        const el = els[i];
+        const r = el.getBoundingClientRect();
+        if (r.top < h - 40 && r.bottom > 0) { el.classList.add("in"); els.splice(i, 1); }
+      }
     }
-    const obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
-    els.forEach(function (el) { obs.observe(el); });
+    function revealAll() { els.forEach(function (el) { el.classList.add("in"); }); els.length = 0; }
+
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check, { passive: true });
+    // filet de sécurité : tout devient visible au plus tard ici
+    setTimeout(revealAll, 1600);
+    window.addEventListener("load", check);
   })();
 
-  // Barre sticky mobile : visible apres le hero, masquee sur le CTA final
+  // Sticky CTA mobile : visible après le hero, masquée sur le CTA final
   (function () {
     const bar = document.getElementById("sticky-cta");
-    const hero = document.getElementById("cta");
+    const hero = document.querySelector(".hero");
     const fin = document.getElementById("final");
     if (!bar || !hero || !fin || !("IntersectionObserver" in window)) return;
     let heroVisible = true, finVisible = false;
